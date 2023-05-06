@@ -1,0 +1,55 @@
+.LandingPageContainer {
+    display: flex;
+    background-color: #a3ae8e;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.LPHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+    background-color: #5d7f5a;
+    width: 100%;
+    height: 10%;
+}
+.LPHeaderTDiv {
+    margin-left: 1%;
+    height: auto;
+}
+.LPHeaderButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 1%;
+    height: auto;
+}
+.LPBody {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
+}
+.LPBodyText {
+    width: 50%;
+    outline: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 1% 0 1%;
+}
+.LPBodyImage {
+    width: 50%;
+    outline: auto;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 1% 0 1%;
+}
