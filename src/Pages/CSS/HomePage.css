@@ -1,0 +1,50 @@
+.HomePageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.HPCreate {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    -45deg,
+    #af69dd73,
+    #b841f07a,
+    #af970d79,
+    #fcf94875
+  );
+  animation: Gradient 15s ease infinite;
+  background-size: 200% 200%;
+  justify-content: center;
+  background-color: #d6d6d6;
+  width: 42rem;
+  height: 20vh;
+  margin: 1rem;
+  margin-bottom: 5rem;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  border-width: 0.2rem;
+  transition: ease-in-out 0.4s;
+  flex-direction: column;
+}
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.HPCreate:hover {
+  display: flex;
+  box-shadow: 0 9px 10px rgba(0, 0, 0, 0.4);
+  transition: ease-in-out 0.4s;
+}
+.HPCreate:hover .Creaticon {
+    color: #915ee4;
+    transition: ease-in-out 0.4s;
+}

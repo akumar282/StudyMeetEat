@@ -4,6 +4,8 @@ import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
+  
+
   return (
     <main className="LandingPageContainer">
       <div className="LPHeader">

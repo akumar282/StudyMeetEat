@@ -5,13 +5,16 @@ import { useFormik } from "formik";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import * as yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
+
 export default function LoginPage() {
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
-
+    const navigate = useNavigate();
+    
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -38,13 +41,13 @@ export default function LoginPage() {
         return errors;
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // add login functionality here
+      navigate("/home");
     },
   });
 
   return (
-    <main>
-      <div className="LoginContainer">
+      <main className="LoginContainer">
         <div className="LoginBox">
           <div className="LoginTitle">
             <Typography
@@ -143,6 +146,8 @@ export default function LoginPage() {
             </Typography>
             <Button
                 variant="contained"
+                component={Link}
+                to="/signup"
                 sx={{
                     backgroundColor: "#bf9b30",
                     width: "85%",
@@ -159,7 +164,6 @@ export default function LoginPage() {
             </Button>
             </div>
         </div>
-      </div>
-    </main>
+      </main>
   );
 }
