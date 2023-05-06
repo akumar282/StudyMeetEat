@@ -4,8 +4,6 @@ import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
-  
-
   return (
     <main className="LandingPageContainer">
       <div className="LPHeader">
@@ -15,7 +13,6 @@ export default function LandingPage() {
           </div>
           <div className="LPHeaderButtons">
             <Button
-             
               disableRipple
               sx={{
                 color: "#FFFFFF",
@@ -29,7 +26,7 @@ export default function LandingPage() {
               Sign Up
             </Button>
             <Button
-            component={Link}
+              component={Link}
               to="/login"
               disableRipple
               sx={{
@@ -77,7 +74,9 @@ export default function LandingPage() {
                   backgroundColor: "#bf9b30",
                   color: "#FFFFFF",
                   mt: "2%",
-                  fontSize: "calc(9px + 1vh);",
+                  width: "70%",
+                  height: "3rem",
+                  fontSize: "1.5vh",
                   "&:hover": {
                     backgroundColor: "#cea835",
                   },
@@ -87,9 +86,11 @@ export default function LandingPage() {
               </Button>
             </div>
           </div>
-
-          <div className="LPBodyImage"></div>
+          <div className="LPBodyImage">
+            <img className = "LPBII"src="Bookicon.png" alt="Landing Page" />
+          </div>
         </div>
+        <div className="LPAbout"></div>
       </div>
     </main>
   );
