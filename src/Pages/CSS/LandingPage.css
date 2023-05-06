@@ -1,55 +1,84 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #dad7cd;
+}
+
 .LandingPageContainer {
-    display: flex;
-    background-color: #a3ae8e;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .LPHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    
-    background-color: #5d7f5a;
-    width: 100%;
-    height: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #4d307f;
+  width: 100%;
+  height: 8%;
+}
+.LPHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 80rem;
+}
+.LPHeaderTitle {
+  margin-left: 10%;
 }
 .LPHeaderTDiv {
-    margin-left: 1%;
-    height: auto;
+  height: auto;
 }
+.LPHeaderTDiv h1 {
+  color: #FFFFFF;
+  font-size: 2rem;
+}
+
 .LPHeaderButtons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 1%;
-    height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1%;
+  gap: 1rem;
 }
 .LPBody {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 80rem;
+}
+.LPBM {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 .LPBodyText {
-    width: 50%;
-    outline: auto;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 1% 0 1%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 40vh;
+}
+.LPBB {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 .LPBodyImage {
-    width: 50%;
-    outline: auto;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 1% 0 1%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 40vh;
 }
