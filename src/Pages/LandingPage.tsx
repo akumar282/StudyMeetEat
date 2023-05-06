@@ -13,6 +13,8 @@ export default function LandingPage() {
           </div>
           <div className="LPHeaderButtons">
             <Button
+            component={Link}
+            to="/signup"
               disableRipple
               sx={{
                 color: "#FFFFFF",
@@ -51,7 +53,6 @@ export default function LandingPage() {
                 color: "#000000",
                 fontWeight: "bold",
                 fontSize: "calc(25px + 3vh);",
-                ml: "2%",
               }}
             >
               Connect and Learn with DubMeets:
@@ -61,7 +62,6 @@ export default function LandingPage() {
               sx={{
                 color: "#000000",
                 fontSize: "calc(15px + 1.5vh);",
-                ml: "2%",
               }}
             >
               Create Study Meetups for Any Subject or Class!
@@ -73,8 +73,8 @@ export default function LandingPage() {
                 sx={{
                   backgroundColor: "#bf9b30",
                   color: "#FFFFFF",
-                  mt: "2%",
-                  width: "70%",
+
+                  width: "100%",
                   height: "3rem",
                   fontSize: "1.5vh",
                   "&:hover": {
@@ -87,10 +87,34 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="LPBodyImage">
-            <img className = "LPBII"src="Bookicon.png" alt="Landing Page" />
+            <img className="LPBII" src="Bookicon.png" alt="Landing Page" />
           </div>
         </div>
-        <div className="LPAbout"></div>
+        {/* <img className="LPBII2" src="TopPart.png" alt="Landing Page" /> */}
+        <div className="LPAbout">
+          <div className="LPAboutText">
+            <Typography
+              variant="h2"
+              sx={{
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                fontSize: "calc(25px + 3vh);",
+                mb: "1rem",
+              }}>
+              About DubMeets:
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                color: "#FFFFFF",
+                fontSize: "calc(15px + 1.5vh);",
+              }}>
+              DubMeets is a platform for students to connect and learn with each
+              other. Students can create study meetups for any subject or class
+              and join other students' meetups.
+            </Typography>
+            </div>
+        </div>
       </div>
     </main>
   );

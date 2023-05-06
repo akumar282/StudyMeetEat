@@ -34,7 +34,7 @@ body {
   height: auto;
 }
 .LPHeaderTDiv h1 {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 2rem;
 }
 
@@ -68,12 +68,12 @@ body {
   flex-direction: column;
   justify-content: center;
   min-height: 50vh;
+  margin-left: 2rem;
+  outline: auto;
 }
 .LPBB {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   margin-top: 4rem;
 }
@@ -90,4 +90,26 @@ body {
   align-items: center;
   justify-content: center;
   width: 90%;
+}
+.LPAbout {
+  background-color: #5c4683;
+  width: 100%;
+  height: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.LPBII2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.LPAboutText {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
 }
