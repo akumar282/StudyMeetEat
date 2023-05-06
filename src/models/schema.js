@@ -14,7 +14,7 @@ export const schema = {
                     "name": "creator_id",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "meet_creator": {
@@ -54,12 +54,13 @@ export const schema = {
                 },
                 "classes": {
                     "name": "classes",
-                    "isArray": false,
+                    "isArray": true,
                     "type": {
                         "enum": "ClassesEnum"
                     },
-                    "isRequired": true,
-                    "attributes": []
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "attendants": {
                     "name": "attendants",
@@ -94,16 +95,20 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "searchable",
+                    "properties": {}
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
                             {
                                 "allow": "public",
                                 "operations": [
+                                    "read",
                                     "create",
-                                    "update",
                                     "delete",
-                                    "read"
+                                    "update"
                                 ]
                             }
                         ]
@@ -116,6 +121,13 @@ export const schema = {
             "fields": {
                 "id": {
                     "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "cognito_id": {
+                    "name": "cognito_id",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -210,16 +222,20 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "searchable",
+                    "properties": {}
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
                             {
                                 "allow": "public",
                                 "operations": [
+                                    "read",
                                     "create",
-                                    "update",
                                     "delete",
-                                    "read"
+                                    "update"
                                 ]
                             }
                         ]
@@ -246,6 +262,6 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "codegenVersion": "3.3.4",
-    "version": "7429d916fc07479118a90553bbc728a6"
+    "codegenVersion": "3.2.0",
+    "version": "019f4a4d326dcb6505ad5b2c5600835d"
 };

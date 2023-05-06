@@ -1,6 +1,4 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
-// @ts-ignore
-import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 export enum ClassesEnum {
   CSS360 = "CSS360",
@@ -21,13 +19,13 @@ type EagerMeetsModel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly creator_id?: string | null;
+  readonly creator_id: string;
   readonly meet_creator: string;
   readonly meet_name: string;
   readonly location: string;
   readonly start_time: string;
   readonly end_time: string;
-  readonly classes: ClassesEnum | keyof typeof ClassesEnum;
+  readonly classes?: (ClassesEnum | null)[] | keyof typeof ClassesEnum | null;
   readonly attendants?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -39,13 +37,13 @@ type LazyMeetsModel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly creator_id?: string | null;
+  readonly creator_id: string;
   readonly meet_creator: string;
   readonly meet_name: string;
   readonly location: string;
   readonly start_time: string;
   readonly end_time: string;
-  readonly classes: ClassesEnum | keyof typeof ClassesEnum;
+  readonly classes?: (ClassesEnum | null)[] | keyof typeof ClassesEnum | null;
   readonly attendants?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -63,6 +61,7 @@ type EagerUsersModel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly cognito_id: string;
   readonly first_name: string;
   readonly last_name: string;
   readonly email: string;
@@ -81,6 +80,7 @@ type LazyUsersModel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly cognito_id: string;
   readonly first_name: string;
   readonly last_name: string;
   readonly email: string;
