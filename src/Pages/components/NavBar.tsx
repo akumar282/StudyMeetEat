@@ -51,7 +51,7 @@ export default function Navbar() {
               {" "}
               <SearchIcon fontSize="large" /> Discover{" "}
             </CustomLink>
-            <CustomLink className="navElement" to="/create-project">
+            <CustomLink className="navElement" to="/create">
               {" "}
               <AddIcon sx={{ fontSize: 40 }} /> Create{" "}
             </CustomLink>

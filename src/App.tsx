@@ -4,6 +4,8 @@ import LandingPage from "./Pages/LandingPage";
 import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
 import HomePage from "./Pages/HomePage";
+import CreatePage from "./Pages/CreatePage";
+import DiscoverPage from "./Pages/DiscoverPage";
 
 
 import "./App.css";
@@ -15,7 +17,9 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/home" element={<HomePage />} />   
+        <Route path="/home" element={<HomePage />} />  
+        <Route path="/create" element={<CreatePage />} />
+        <Route path="/discover" element={<DiscoverPage />} />
       </Routes>
     </BrowserRouter>
   );
