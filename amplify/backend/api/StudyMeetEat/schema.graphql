@@ -9,20 +9,21 @@ enum MajorsEnum {
   MATH
 }
 
-type MeetsModel @model @auth(rules: [{allow: public}]) {
+type MeetsModel @model @searchable @auth(rules: [{allow: public, operations: [read, create, delete, update]}]) {
   id: ID!
-  creator_id: ID
+  creator_id: ID!
   meet_creator: String!
   meet_name: String!
   location: String!
   start_time: AWSDateTime!
   end_time: AWSDateTime!
-  classes: ClassesEnum!
+  classes: [ClassesEnum]
   attendants: [ID]
 }
 
-type UsersModel @model @auth(rules: [{allow: public}]) {
+type UsersModel @model @searchable @auth(rules: [{allow: public, operations: [read, create, delete, update]}]) {
   id: ID!
+  cognito_id: ID!
   first_name: String!
   last_name: String!
   email: String!

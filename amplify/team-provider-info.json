@@ -10,6 +10,17 @@
       "StackName": "amplify-studymeeteat-staging-221040",
       "StackId": "arn:aws:cloudformation:us-west-2:739292628626:stack/amplify-studymeeteat-staging-221040/ac6440b0-eb91-11ed-a628-0625f6f80ef5",
       "AmplifyAppId": "d2bpt9y90s59cb"
+    },
+    "categories": {
+      "api": {
+        "StudyMeetEat": {}
+      },
+      "auth": {
+        "studymeeteatab3d46e4": {}
+      },
+      "storage": {
+        "s32eb773a9": {}
+      }
     }
   }
 }
