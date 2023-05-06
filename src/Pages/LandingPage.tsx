@@ -90,7 +90,7 @@ export default function LandingPage() {
             <img className="LPBII" src="Bookicon.png" alt="Landing Page" />
           </div>
         </div>
-        {/* <img className="LPBII2" src="TopPart.png" alt="Landing Page" /> */}
+        <img className="LPBII2" src="AbhiWave.png" alt="Landing Page" />
         <div className="LPAbout">
           <div className="LPAboutText">
             <Typography
