@@ -1,120 +1,115 @@
 .DiscoverContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .Discover {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: auto;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: #dad7cd;
-    /* outline: auto; */
+  margin-top: calc(30px + 0.2vh);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 80rem;
+  height: 100%;
 }
 
 .DPDisplay {
-    display: flex;
-    align-items: center;
-    background-color: #af69dd73;
-    width: 42rem;
-    height: 20vh;
-    margin-bottom: 5rem;
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    border-width: 0.2rem;
-    flex-direction: row;
-    position: relative;
-    /* outline: auto; */
+  display: flex;
+  align-items: center;
+  background-color: #af69dd73;
+  width: 70%;
+  max-width: 70rem;
+  height: 25vh;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  flex-direction: row;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.DPDisplay:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  padding: 0.5rem;
+  transition: 0.5s ease-in-out;
 }
 
 .DiscoverImage {
-    display: flex;
-    flex-direction: row;
-    border-radius: 10px;
-    width: 50%;
-    align-items: left;
-    justify-content: left;
-    height: 100%;
-    /* outline: auto; */
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  width: 50%;
+  align-items: left;
+  justify-content: left;
+  height: 100%;
+  /* outline: auto; */
+  transition: 0.5s ease-in-out;
 }
 
 .DiscoverImages {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: fill;
+  border-radius: 1rem;
+  /* outline: auto; */
+  transition: 0.5s ease-in-out;
+}
+
+.DiscoverMeeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  /* outline: auto; */
+  transition: 0.5s ease-in-out;
+}
+.DiscoverTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+  vertical-align: top;
+  transition: 0.5s ease-in-out;
+}
+.DiscoverDescription {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: ellipsis;
+  max-height: 30%;
+  width: 100%;
+  transition: 0.5s ease-in-out;
+}
+.DiscoverTags {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
-    border: none;
-    object-fit: fill;
-    border-radius: 1rem;
-    /* outline: auto; */
+    height: 20%;
+    transition: 0.5s ease-in-out;
 }
-
-.DiscoverMeeting {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
-    outline: auto;
-}
-.DiscoverTitle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;    
-    width: 75%;
-    height: auto; 
-    margin: 5px;
-    vertical-align: top;
-    outline: auto;
-}
-
-.DiscoverDesc {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    margin: 5px;
-    /* outline: auto; */
-}
-.DiscoverLocation {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    margin: 5px;
-    /* outline: auto; */
-}
-.DicoverDateTime {
+.DiscoverButton {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-}
-
-.DiscoverTime {
-    display: inline-block;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    width: 50%;
-    /* outline: auto; */
-}
-
-.DiscoverDate {
-    display: inline-block;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    width: 50%;
-    /* outline: auto; */
+    width: 100%;
+    height: 20%;
+    transition: 0.5s ease-in-out;
 }

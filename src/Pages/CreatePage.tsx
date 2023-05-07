@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DatePicker, TimePicker } from "@mui/x-date-pickers";
+import { DatePicker, TimePicker, MobileTimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import DownloadIcon from "@mui/icons-material/Download";
 import { uploadImage } from '../backend/storage/s3'
@@ -19,6 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
 import awsconfig from '../aws-exports'
 import { Amplify } from 'aws-amplify'
 Amplify.configure(awsconfig)
+import { time } from "console";
 
 export default function CreatePage() {
   const [selectedClass, setSelectedClass] = React.useState([]);
@@ -109,6 +110,9 @@ export default function CreatePage() {
       createMeetDyn(values)
     },
   });
+  console.log(date?.format("YYYY-MM-DD"));
+  console.log(timeOne?.format("HH:mm:ss"));
+  console.log(timeTwo?.format("HH:mm:ss"));
   return (
     <main className="CreateContainer">
       <Navbar />
@@ -202,27 +206,40 @@ export default function CreatePage() {
               </Typography>
 
               <DatePicker
+                disablePast
                 value={date}
                 onChange={(newValue) => setDate(newValue)}
               />
             </div>
             <div className="CFMeetingInfoTime">
-              <Typography
+              
+              <div className="CFMeetingInfoTimeInput">
+                <Typography
                 sx={{
                   color: "#111111",
                   fontWeight: "bold",
                   fontSize: "1.5rem",
                 }}
               >
-                Time
+                From
               </Typography>
-              <div className="CFMeetingInfoTimeInput">
-                <TimePicker
+                <MobileTimePicker
+                disablePast
                   value={timeOne}
                   onChange={(newValue) => setTimeOne(newValue)}
                 />
-                <h4>to</h4>
-                <TimePicker
+                </div>
+                <div className="CFMeetingInfoTimeInput">
+                <Typography
+                sx={{
+                  color: "#111111",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                }}
+              >
+                To
+              </Typography>
+                <MobileTimePicker
                   value={timeTwo}
                   onChange={(newValue) => setTimeTwo(newValue)}
                 />
