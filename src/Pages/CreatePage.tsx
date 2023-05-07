@@ -14,7 +14,7 @@ import { DatePicker, TimePicker, MobileTimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import DownloadIcon from "@mui/icons-material/Download";
 import { uploadImage } from '../backend/storage/s3'
-import { createMeet } from '../backend/mutations/postMutations'
+import { createMeet } from '../backend/mutations/meetMutations'
 import { v4 as uuidv4 } from 'uuid';
 import awsconfig from '../aws-exports'
 import { Amplify } from 'aws-amplify'
