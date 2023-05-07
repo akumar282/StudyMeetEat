@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./CSS/OverviewPage.css";
 import { Button, Chip, IconButton, Typography } from "@mui/material";
+import { updateMeet } from "../backend/mutations/postMutations";
+import { updateUser } from "../backend/mutations/userMutations";
 const TestData = {
   title: "Test Meeting",
   description:
@@ -15,6 +17,21 @@ const TestData = {
 };
 
 export default function MeetingOverviewPage() {
+
+  async function updateAttendees(props: any) {
+    const result = await updateMeet({
+      input: {
+        id: props.meetid,
+        attendants: [localStorage.getItem("uuid")!]
+      }
+    })
+    const result2 = await updateUser({
+      input: {
+        id: localStorage.getItem("uuid")!,
+        attending_meets: [props.meetid]
+      }
+    })
+  }
   return (
     <main className="OverviewPage">
       <div className="OverviewContainer">

@@ -58,7 +58,12 @@ export default function CreatePage() {
         end_time: end
       }
     })
-    
+    const result2 = await updateUser({
+      input: {
+        id: localStorage.getItem("uuid")!,
+        attending_meets: [result.data.createPostsModels.id]
+      }
+    })
     console.log(result)
   }
 
