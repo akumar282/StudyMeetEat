@@ -70,6 +70,20 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
+                "image_key": {
+                    "name": "image_key",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -197,6 +211,13 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
+                "image_key": {
+                    "name": "image_key",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -262,6 +283,6 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "codegenVersion": "3.3.4",
-    "version": "019f4a4d326dcb6505ad5b2c5600835d"
+    "codegenVersion": "3.2.0",
+    "version": "a6a6d194ee7bed39e860f41f8d9ccfa5"
 };

@@ -1,6 +1,4 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
-// @ts-ignore
-import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 export enum ClassesEnum {
   CSS360 = "CSS360",
@@ -29,6 +27,8 @@ type EagerMeetsModel = {
   readonly end_time: string;
   readonly classes?: (ClassesEnum | null)[] | keyof typeof ClassesEnum | null;
   readonly attendants?: (string | null)[] | null;
+  readonly image_key?: string | null;
+  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -47,6 +47,8 @@ type LazyMeetsModel = {
   readonly end_time: string;
   readonly classes?: (ClassesEnum | null)[] | keyof typeof ClassesEnum | null;
   readonly attendants?: (string | null)[] | null;
+  readonly image_key?: string | null;
+  readonly description?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -72,6 +74,7 @@ type EagerUsersModel = {
   readonly classes?: (ClassesEnum | null)[] | keyof typeof ClassesEnum | null;
   readonly created_meets?: (string | null)[] | null;
   readonly attending_meets?: (string | null)[] | null;
+  readonly image_key?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -91,6 +94,7 @@ type LazyUsersModel = {
   readonly classes?: (ClassesEnum | null)[] | keyof typeof ClassesEnum | null;
   readonly created_meets?: (string | null)[] | null;
   readonly attending_meets?: (string | null)[] | null;
+  readonly image_key?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
