@@ -8,17 +8,17 @@ DubMeets is a platform that allows students to create and join study sessions ba
 
 ## How we built it
 
-We built DubMeets using modern web technologies like HTML, CSS, and JavaScript. We used a combination of front-end and back-end development techniques to create a responsive and scalable platform.
+We built DubMeets in two parts the frontend and the backend. The Frontend used Typscript and React to help build a responsive UI. The backend used Typescript, Node, AWS, Amplify, and Google maps API to help build an effefctive data storage platform. Putting both together we were able to create a responsive and scalable platform.
 
 ## Challenges we ran into
 
-We faced a few challenges during the development of DubMeets, such as integrating the scheduling and location features, ensuring data privacy and security, and optimizing the platform for performance. However, we were able to overcome these challenges by working collaboratively and implementing innovative solutions.
+We faced a few challenges during the development of DubMeets, such as integrating Google maps location features, optimizing the platform for performance, and working with the time constraint to get a project finished. However, we were able to overcome these challenges by working collaboratively and leveraging our resources.
 
 ## Accomplishments that we're proud of
 
-We're proud of creating a platform that empowers students to take control of their learning experience. We're also proud of our user-friendly interface, customizable study plans, and intuitive scheduling tools that make it easy for students to collaborate and optimize their study time.
+We are proud of being able to create a working full stack application within the limits of the hackathon 
 
-##What we learned
+## What we learned
 
 Through the development of DubMeets, we learned the importance of collaboration, user feedback, and iteration. We also gained valuable experience in web development, database management, and user experience design.
 
