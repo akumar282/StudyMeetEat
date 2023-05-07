@@ -38,11 +38,12 @@ export default function CreatePage() {
     description: string,
     location: string,
     class: ClassesEnum[],
-    startTime: string,
-    endTime: string,
   }): Promise<void> {
     const uuidGen = uuidv4();
     const imageLink = await uploadImage(selectedFile!)
+    const start = date?.format("YYYY-MM-DD") + 'T' + timeOne?.format("HH:mm:ss.sss") + 'Z'
+    const end = date?.format("YYYY-MM-DD") + 'T' + timeTwo?.format("HH:mm:ss.sss") + 'Z'
+    console.log(start)
     const result = await createMeet({
       input: {
         id: uuidGen,
@@ -53,10 +54,11 @@ export default function CreatePage() {
         description: props.description,
         location: props.location,
         classes: props.class,
-        start_time: props.startTime,
-        end_time: props.endTime,
+        start_time: start,
+        end_time: end
       }
     })
+    
     console.log(result)
   }
 
@@ -109,9 +111,7 @@ export default function CreatePage() {
       createMeetDyn(values)
     },
   });
-  console.log(date?.format("YYYY-MM-DD"));
-  console.log(timeOne?.format("HH:mm:ss"));
-  console.log(timeTwo?.format("HH:mm:ss"));
+
   return (
     <main className="CreateContainer">
       <Navbar />
