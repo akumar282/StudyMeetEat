@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function getGeolocation(address: string, apiKey: string): Promise<{ lat: number, lng: number } | null> {
+export async function getGeolocation(address: string, apiKey: string): Promise<{ lat: number, lng: number } | null> {
   const formattedAddress = address.replace(' ', '%20');
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress}&key=${apiKey}`;
 

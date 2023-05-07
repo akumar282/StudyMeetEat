@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CSS/CreatePage.css";
 import Navbar from "./components/NavBar";
 import { ClassesEnum } from "../API";
@@ -13,13 +13,19 @@ import {
 import { DatePicker, TimePicker, MobileTimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import DownloadIcon from "@mui/icons-material/Download";
-import { uploadImage } from '../backend/storage/s3'
-import { createMeet } from '../backend/mutations/meetMutations'
-import { v4 as uuidv4 } from 'uuid';
-import awsconfig from '../aws-exports'
-import { Amplify } from 'aws-amplify'
+import { uploadImage } from "../backend/storage/s3";
+import { createMeet } from "../backend/mutations/meetMutations";
+import { v4 as uuidv4 } from "uuid";
+import awsconfig from "../aws-exports";
+import { Amplify } from "aws-amplify";
 import { updateUser } from "../backend/mutations/userMutations";
-Amplify.configure(awsconfig)
+import {
+  Autocomplete as GoogleAuto,
+  useLoadScript,
+} from "@react-google-maps/api";
+import { APIKEY } from "../APIKEY";
+Amplify.configure(awsconfig);
+const placesLibrary = ["places"];
 
 export default function CreatePage() {
   const [selectedClass, setSelectedClass] = React.useState([]);
@@ -33,40 +39,73 @@ export default function CreatePage() {
   const [selectedDate, handleDateChange] = React.useState<Dayjs | null>(
     dayjs()
   );
+  const [searchResult, setSearchResult] = useState("Result: none");
+  const [formattedResult, setFormattedResult] = useState("");
 
+  function onLoad(autocomplete) {
+    setSearchResult(autocomplete);
+  }
+
+  function onPlaceChanged() {
+    if (searchResult != null) {
+      const place= null;
+      try {
+         place = searchResult.getPlace();
+      } catch (error) {
+        console.log(error);
+        return;
+      }
+      const name = place.name;
+      const status = place.business_status;
+      const formattedAddress = place.formatted_address;
+      // console.log(place);
+      // console.log(`Name: ${name}`);
+      // console.log(`Business Status: ${status}`);
+      // console.log(`Formatted Address: ${formattedAddress}`);
+      setFormattedResult(formattedAddress);
+    } else {
+      alert("Please enter text");
+    }
+  }
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: APIKEY,
+    libraries: placesLibrary,
+  });
   async function createMeetDyn(props: {
-    title: string,
-    description: string,
-    location: string,
-    class: ClassesEnum[],
+    title: string;
+    description: string;
+    location: string;
+    class: ClassesEnum[];
   }): Promise<void> {
     const uuidGen = uuidv4();
-    const imageLink = await uploadImage(selectedFile!)
-    const start = date?.format('YYYY-MM-DD') + 'T' + timeOne?.format('HH:mm:ss.sss') + 'Z'
-    const end = date?.format('YYYY-MM-DD') + 'T' + timeTwo?.format('HH:mm:ss.sss') + 'Z'
-    console.log(start)
+    const imageLink = await uploadImage(selectedFile!);
+    const start =
+      date?.format("YYYY-MM-DD") + "T" + timeOne?.format("HH:mm:ss.sss") + "Z";
+    const end =
+      date?.format("YYYY-MM-DD") + "T" + timeTwo?.format("HH:mm:ss.sss") + "Z";
+    console.log(start);
     const result = await createMeet({
       input: {
         id: uuidGen,
-        creator_id: localStorage.getItem('uuid')!,
-        meet_creator: localStorage.getItem('username')!,
+        creator_id: localStorage.getItem("uuid")!,
+        meet_creator: localStorage.getItem("username")!,
         image_key: imageLink,
         meet_name: props.title,
         description: props.description,
-        location: props.location,
+        location: formattedResult,
         classes: props.class,
         start_time: start,
-        end_time: end
-      }
-    })
+        end_time: end,
+      },
+    });
     const result2 = await updateUser({
       input: {
-        id: localStorage.getItem('uuid')!,
-        attending_meets: [result.data.createPostsModels.id]
-      }
-    })
-    console.log(result)
-    console.log(result2)
+        id: localStorage.getItem("uuid")!,
+        attending_meets: [result.data.createPostsModels.id],
+      },
+    });
+    console.log(result);
+    console.log(result2);
   }
 
   function handleClass(event: any, value: any | null) {
@@ -115,7 +154,7 @@ export default function CreatePage() {
       return errors;
     },
     onSubmit: (values) => {
-      createMeetDyn(values)
+      createMeetDyn(values);
     },
   });
 
@@ -218,33 +257,32 @@ export default function CreatePage() {
               />
             </div>
             <div className="CFMeetingInfoTime">
-              
               <div className="CFMeetingInfoTimeInput">
                 <Typography
-                sx={{
-                  color: "#111111",
-                  fontWeight: "bold",
-                  fontSize: "1.5rem",
-                }}
-              >
-                From
-              </Typography>
+                  sx={{
+                    color: "#111111",
+                    fontWeight: "bold",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  From
+                </Typography>
                 <MobileTimePicker
-                disablePast
+                  disablePast
                   value={timeOne}
                   onChange={(newValue) => setTimeOne(newValue)}
                 />
-                </div>
-                <div className="CFMeetingInfoTimeInput">
+              </div>
+              <div className="CFMeetingInfoTimeInput">
                 <Typography
-                sx={{
-                  color: "#111111",
-                  fontWeight: "bold",
-                  fontSize: "1.5rem",
-                }}
-              >
-                To
-              </Typography>
+                  sx={{
+                    color: "#111111",
+                    fontWeight: "bold",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  To
+                </Typography>
                 <MobileTimePicker
                   value={timeTwo}
                   onChange={(newValue) => setTimeTwo(newValue)}
@@ -261,19 +299,24 @@ export default function CreatePage() {
               >
                 Location
               </Typography>
-              <TextField
-                id="location"
-                fullWidth
-                value={formik.values.location}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.location && Boolean(formik.errors.location)
-                }
-                helperText={
-                  (formik.touched.location && formik.errors.location) || " "
-                }
-                variant="outlined"
-              />
+              <GoogleAuto onPlaceChanged={onPlaceChanged} onLoad={onLoad}>
+                <input
+                  type="text"
+                  placeholder="Search for Meeting Location"
+                  style={{
+                    boxSizing: `border-box`,
+                    border: `1px solid transparent`,
+                    width: `30rem`,
+                    height: `5em`,
+                    padding: `0 12px`,
+                    borderRadius: `3px`,
+                    boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+                    fontSize: `14px`,
+                    outline: `none`,
+                    textOverflow: `ellipses`,
+                  }}
+                />
+              </GoogleAuto>
             </div>
             <div className="CFMeetingInfoClass">
               <Typography

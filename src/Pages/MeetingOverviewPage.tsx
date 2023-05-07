@@ -2,18 +2,42 @@ import React, { useEffect, useState, useMemo } from "react";
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./CSS/OverviewPage.css";
 import { Button, Chip, IconButton, Typography } from "@mui/material";
-import { updateMeet } from "../backend/mutations/postMutations";
+import { updateMeet } from "../backend/mutations/meetMutations";
 import { updateUser } from "../backend/mutations/userMutations";
 import { getImage } from "../backend/storage/s3";
 import { GoogleMap, Marker, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { APIKEY } from "../APIKEY"
+import { getGeolocation } from "../backend/utils/googleMaps";
 
 
 export default function MeetingOverviewPage() {
   const location = useLocation();
   const meeting = location.state;
+  const [cordsL, setCordsL] = useState( { lat: 47.759444, lng:  -122.191111 });
   console.log(meeting);
 
+  function formatIsoTimestamp(isoTimestamp: string): string {
+    const date = new Date(isoTimestamp);
+    const month = date.toLocaleString("en-US", { month: "long" });
+    const day = date.toLocaleString("en-US", { day: "numeric" });
+    const year = date.toLocaleString("en-US", { year: "numeric" });
+    const time = date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+    });
+  
+    return `${month} ${day}, ${year}, ${time}`;
+  }
+  useEffect(() => {
+    const getCords = async () =>  {
+      const cords = await getGeolocation(meeting.location, APIKEY);
+      setCordsL(cords!);
+    }
+    getCords();
+  }, [meeting.location]);
+
+  console.log(cordsL);
+  console.log(meeting.location);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: APIKEY,
   });
@@ -32,7 +56,7 @@ export default function MeetingOverviewPage() {
       }
     })
   }
-  const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
+  const center = useMemo(() => ({ lat: 47.759444, lng:  -122.191111 }), []);
   const google = window.google;
   useEffect(() => {
     const fetchImage = async () => {
@@ -50,10 +74,10 @@ export default function MeetingOverviewPage() {
     return (
       <GoogleMap
         mapContainerClassName="map-container"
-        center={center}
-        zoom={10}
+        center={cordsL}
+        zoom={17}
       >
-        <MarkerF position={{ lat: 18.52043, lng: 73.856743 }} />
+        <MarkerF position={cordsL} />
       </GoogleMap>
     );
   }
@@ -61,7 +85,7 @@ export default function MeetingOverviewPage() {
     <main className="OverviewPage">
       <div className="OverviewTopBar">
         <Button variant="contained" 
-            onClick={() => { navigate("/discover") }}
+            onClick={() => { navigate(-1); }}
         sx={{
               backgroundColor: "#bf9b30",
               width: "85%",
@@ -106,7 +130,7 @@ export default function MeetingOverviewPage() {
             </div>
             <div className="OverviewTime">
               <Typography variant="body1">
-                {meeting.start_time} - {meeting.end_time}
+                {formatIsoTimestamp(meeting.start_time)} - {formatIsoTimestamp(meeting.end_time)}
               </Typography>
             </div>
             <div className = "OverviewAttendes">

@@ -33,7 +33,20 @@ export default function DiscoverPage() {
 
   function CreateData(props: any) {
     const [imageSrc, setImageSrc] = useState("");
+    function formatIsoTimestamp(isoTimestamp: string): string {
+      const date = new Date(isoTimestamp);
+      const month = date.toLocaleString("en-US", { month: "long" });
+      const day = date.toLocaleString("en-US", { day: "numeric" });
+      const year = date.toLocaleString("en-US", { year: "numeric" });
+      const time = date.toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+      });
+    
+      return `${month} ${day}, ${year}, ${time}`;
+    }
     // fetch image and comments
+
     useEffect(() => {
       const fetchImage = async () => {
         const src = await getImage(props.Meeting.image_key);
@@ -89,7 +102,7 @@ export default function DiscoverPage() {
                 fontSize: "calc(3px + 1vh);",
               }}
             >
-              {props.Meeting.start_time} - {props.Meeting.end_time}
+              {formatIsoTimestamp(props.Meeting.start_time)} - {formatIsoTimestamp(props.Meeting.end_time)}
             </Typography>
           </div>
           <div className = "DiscoverButton">
