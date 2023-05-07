@@ -6,23 +6,30 @@ import { useNavigate } from "react-router-dom";
 
 export default function DiscoverPage() {
     const navigate = useNavigate();
-    function CreateData (props: any) {
+    function CreateData(props: any) {
         return (
-            <div className="DPDisplay" onClick = {() => navigate("/discover/title")} >
-                    <img className="DiscoverImage" src = "study.jpg"/>
-                    <h className="DiscoverTitle">Study</h>
-                    <p className="DiscoverDesc">Study with other students</p>
-                    <p className= "DiscoverTime"> Time:</p>
-                    <p className = "DiscoverDate"> Date: </p>
-                    <p className = "DiscoverLocation"> Location: </p>
+            <div className="DPDisplay" onClick={() => navigate("/discover/title")} >
+                <div className="DiscoverImage">
+                    <img className="DiscoverImages" src="study.jpg" />
+                </div>
+                <div className="DiscoverMeeting">
+                    <h1 className="DiscoverTitle"> Study Group </h1>
+                    <div className="DiscoverDesc"> description </div>
+                    <div className="DiscoverLocation">Location: </div>
+                    <div className="DiscoverDateTime">
+                        <div className="DiscoverDate">Date: </div>
+                        <div className="DiscoverTime">Time: </div>
+                    </div>
+
                     <Chip sx={{
                         position: "absolute",
-                        top: "10%",
-                        right: "3%",
+                        top: "4%",
+                        right: "1%",
                         background: "#fcf94875",
                     }}
                         label="class" />
                 </div>
+            </div>
         )
     }
     return (
