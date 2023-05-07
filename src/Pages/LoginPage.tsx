@@ -15,6 +15,9 @@ import { getCurrentUserAttributes } from '../backend/auth/authentication'
 import { getUserById } from '../backend/queries/userQueries'
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
+import awsconfig from '../aws-exports'
+import { Amplify } from 'aws-amplify'
+Amplify.configure(awsconfig)
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
