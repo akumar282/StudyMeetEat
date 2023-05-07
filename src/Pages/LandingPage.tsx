@@ -3,7 +3,36 @@ import "./CSS/LandingPage.css";
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+const globalAuthState = {
+  isAuthenticated: false,
+  username: null,
+  email: null,
+  uuid: null,
+  userVersion: null,
+  profileImage: null,
+}
 export default function LandingPage() {
+  function setLocalStorage() {
+    if (!localStorage.getItem("email")) {
+      window.localStorage.setItem("email", globalAuthState.email);
+    }
+    if (!localStorage.getItem("isAuthenticated")) {
+      window.localStorage.setItem("isLoggedin", globalAuthState.isLoggedin);
+    }
+    if (!localStorage.getItem("uuid")) {
+      window.localStorage.setItem("uuid", globalAuthState.uuid);
+    }
+    if (!localStorage.getItem("username")) {
+      window.localStorage.setItem("username", globalAuthState.username);
+    }
+    if (!localStorage.getItem("userVersion")) {
+      window.localStorage.setItem("userVersion", globalAuthState.userVersion);
+    }
+    if (!localStorage.getItem("profileImage")) {
+      window.localStorage.setItem("profileImage", globalAuthState.profileImage);
+    }
+  }
+  setLocalStorage();
   return (
     <main className="LandingPageContainer">
       <div className="LPHeader">
@@ -93,7 +122,7 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-       <img className="LPBII2" src="AbhiWave.png" alt="Landing Page" /> 
+      <img className="LPBII2" src="AbhiWave.png" alt="Landing Page" />
       <div className="LPAbout">
         <div className="LPAboutContainer">
           <div className="LPAboutText">
