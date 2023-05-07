@@ -1,0 +1,80 @@
+.DiscoverPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.DPDisplay {
+    display: flex;
+    align-items: center;
+    background-color: #af69dd73;
+    animation: Gradient 15s ease infinite;
+    background-size: 200% 200%;
+    justify-content: center;
+    width: 42rem;
+    height: 20vh;
+    margin: 1rem;
+    margin-bottom: 5rem;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    border-width: 0.2rem;
+    transition: ease-in-out 0.4s;
+    flex-direction: column;
+    position: relative;
+}
+.DiscoverImage {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 0;
+    border-radius: 10px;
+    align-items: left;
+    justify-content: left;
+    height: 100%;
+}
+.DiscoverTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 30%;
+    top: 10%; 
+}
+.DiscoverDesc {
+    display: inline;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 25%;
+    top: 20%;
+}
+.DiscoverTime {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 15%;
+    bottom: 5%;
+}
+.DiscoverDate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 50%;
+    bottom: 5%;
+}
+.DiscoverLocation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 45%;
+    bottom: 15%;
+}
