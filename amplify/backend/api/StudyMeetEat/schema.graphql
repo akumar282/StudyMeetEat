@@ -1,0 +1,146 @@
+enum ClassesEnum {
+  CSS360
+  CSS342
+  CSS101
+  CSS107
+  CSS112
+  CSS132
+  CSS142
+  CSS143
+  CSS198
+  CSS199
+  CSS211
+  CSS295
+  CSS301
+  CSS310
+  CSS370
+  CSS371
+  CSS390
+  CSS399
+  CSS475
+  CSS497
+  CSS430
+  CSS422
+  CSS986
+  BIS300
+  MAT301
+  CMS301
+  INF201
+  BIO210
+  ENG280
+  PSY101
+  CHM160
+  POL320
+  ACT200
+  ECO101
+  PHY121
+  HIS202
+  SOC210
+  ART110
+  GEO300
+  PHI220
+  ANT101
+  MKT310
+  CSE143
+  NUR240
+  MUS250
+  PSY310
+  CHE340
+  ENG370
+  ECO410
+  MTH480
+  BCH201
+  PSC410
+  PHY410
+  HMB310
+  CSE412
+  ENG330
+  MUS240
+  AED320
+  CHE400
+  SOC460
+  THE340
+  PLC310
+  PSY430
+  COM360
+  PHT320
+  ART410
+  ENW200
+  ENV420
+  MTH310
+  CSE460
+  BIO420
+  NUP430
+  LIN410
+  CIE310
+  GDS200
+  CBL420
+  BUS410
+  HIS420
+  ENL440
+  ART350
+  TPR360
+  PHY370
+  MTH390
+  MUC420
+  BIT410
+  NUE420
+  PSR430
+  CEN420
+  SOC430
+  ENT440
+  PSC460
+  CHR480
+  PED430
+  BUM420
+  HIT430
+  PYT440
+  CRR440
+  NUR450
+  MTR470
+  BIM470
+  CSM470
+  ENR480
+  CPH480
+  EDM490
+  PHT490
+  BUR490
+  ARR490
+  PYM490
+  SCM490
+  
+}
+
+enum MajorsEnum {
+  CSSE
+  IMD
+  MATH
+}
+
+type MeetsModel @model @searchable @auth(rules: [{allow: public, operations: [read, create, delete, update]}]) {
+  id: ID!
+  creator_id: ID!
+  meet_creator: String!
+  meet_name: String!
+  location: String!
+  start_time: AWSDateTime!
+  end_time: AWSDateTime!
+  classes: [ClassesEnum]
+  attendants: [ID]
+  image_key: String
+  description: String
+}
+
+type UsersModel @model @searchable @auth(rules: [{allow: public, operations: [read, create, delete, update]}]) {
+  id: ID!
+  cognito_id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  username: String!
+  major: [MajorsEnum]
+  classes: [ClassesEnum]
+  created_meets: [ID]
+  attending_meets: [ID]
+  image_key: String
+}
