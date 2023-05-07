@@ -34,7 +34,7 @@ export default function DiscoverPage() {
         },
       });
 
-      const filteredProjects = result.data.listPostsModels.items.filter(
+      const filteredProjects = result.data.listMeetsModels.items.filter(
         (x) => x._deleted !== true
       );
       setMeetsAll(filteredProjects);
