@@ -6,15 +6,54 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from "react-router-dom";
 import { Button, IconButton, InputAdornment } from "@mui/material";
+import { createUser } from "../backend/mutations/userMutations";
+import { newUserSignUp } from '../backend/auth'
+import { v4 as uuidv4 } from 'uuid';
 
 export default function SignUpPage() {
-    const [showPassword, setShowPassword] = React.useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
+  const uuidGen = uuidv4();
+  async function sendToDatabase(props: {
+    firstName: any;
+    lastName: any;
+    email: any;
+    username: any;
+    password: any;
+    confirmPassword?: string;
+    uuid: string;
+  }) {
+    // redundatant code. should be fixed to finalload.input = props
+    props.uuid = uuidGen
+    localStorage.setItem('uuid', props.uuid)
+    localStorage.setItem('username', props.username)
+    localStorage.setItem('email', props.email)
+    const defaultPic = ['defaultimg1.JPG', 'defaultimg2.JPG', 'defaultimg3.JPG', 'defaultimg4.JPG']
+    await newUserSignUp(props.email, props.password, props.email, props.uuid)
+    await createUser(
+      {
+        input: {
+          id: props.uuid,
+          cognito_id: props.uuid, 
+          username: props.username,
+          email: props.email,
+          first_name: props.firstName,
+          last_name: props.lastName,
+          image_key: defaultPic[Math.floor(Math.random() * 4)],
+          attending_meets: [],
+          created_meets: [],
+          major: []
+        }
+      }
+    )
+  }
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -200,19 +239,19 @@ export default function SignUpPage() {
                 type={showPassword ? "text" : "password"}
                 fullWidth
                 InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 error={
@@ -237,22 +276,22 @@ export default function SignUpPage() {
                 id="confirmPassword"
                 name="confirmPassword"
                 variant="outlined"
-                type= {showConfirmPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 fullWidth
                 InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowConfirmPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowConfirmPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
                 value={formik.values.confirmPassword}
                 onChange={formik.handleChange}
                 error={
@@ -269,7 +308,7 @@ export default function SignUpPage() {
           </div>
         </div>
         <div className="SUSignUp">
-        <Button
+          <Button
             variant="contained"
             sx={{
               backgroundColor: "#bf9b30",
@@ -285,34 +324,34 @@ export default function SignUpPage() {
           >
             Sign Up
           </Button>
-            </div>
-            <div className="SULogin">
-            <Typography
+        </div>
+        <div className="SULogin">
+          <Typography
             sx={{
-                color: "#FFFFFF",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
+              color: "#FFFFFF",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
             }}
-            >
+          >
             Already have an account?
-            </Typography>
-            <Button
-            component = {Link}
-            to = "/login"
+          </Typography>
+          <Button
+            component={Link}
+            to="/login"
             variant="contained"
             sx={{
-                backgroundColor: "#bf9b30",
-                width: "90%",
-                color: "#FFFFFF",
-                fontSize: "1rem",
-                height: "3rem",
-                "&:hover": {
+              backgroundColor: "#bf9b30",
+              width: "90%",
+              color: "#FFFFFF",
+              fontSize: "1rem",
+              height: "3rem",
+              "&:hover": {
                 backgroundColor: "#cea835",
-                },
+              },
             }}>
             Login
-            </Button>
-            </div>
+          </Button>
+        </div>
       </div>
     </main>
   );
