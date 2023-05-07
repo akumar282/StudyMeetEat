@@ -24,6 +24,7 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import { APIKEY } from "../APIKEY";
+import { useNavigate } from "react-router";
 Amplify.configure(awsconfig);
 const placesLibrary = ["places"];
 
@@ -45,16 +46,11 @@ export default function CreatePage() {
   function onLoad(autocomplete) {
     setSearchResult(autocomplete);
   }
-
+  const navigate = useNavigate();
   function onPlaceChanged() {
     if (searchResult != null) {
-      const place= null;
-      try {
-         place = searchResult.getPlace();
-      } catch (error) {
-        console.log(error);
-        return;
-      }
+      const place = searchResult.getPlace();
+      
       const name = place.name;
       const status = place.business_status;
       const formattedAddress = place.formatted_address;
@@ -96,18 +92,20 @@ export default function CreatePage() {
         classes: props.class,
         start_time: start,
         end_time: end,
+        attendants: [],
       },
     });
     const result2 = await updateUser({
       input: {
         id: localStorage.getItem("uuid")!,
-        attending_meets: [result.data.createPostsModels.id],
+        created_meets: [result.data.createMeetsModel.id],
       },
     });
     console.log(result);
     console.log(result2);
+    navigate("/home");
   }
-
+  console.log(formattedResult);
   function handleClass(event: any, value: any | null) {
     setSelectedClass(value.map((item: any) => item));
     formik.setFieldValue("language", value);
@@ -130,23 +128,19 @@ export default function CreatePage() {
     initialValues: {
       title: "",
       description: "",
-      location: "",
       class: [],
     },
     validate: (values) => {
       const errors: Record<string, string> = {};
       if (!values.title) {
         errors.title = "Required";
-      } else if (values.title.length > 15) {
-        errors.title = "Must be 15 characters or less";
+      } else if (values.title.length > 30) {
+        errors.title = "Must be 30 characters or less";
       }
       if (!values.description) {
         errors.description = "Required";
       } else if (values.description.length > 100) {
         errors.description = "Must be 100 characters or less";
-      }
-      if (!values.location) {
-        errors.location = "Required";
       }
       if (!values.class) {
         errors.class = "Required";
@@ -154,6 +148,7 @@ export default function CreatePage() {
       return errors;
     },
     onSubmit: (values) => {
+      console.log("submit")
       createMeetDyn(values);
     },
   });

@@ -3,12 +3,13 @@ import "./CSS/DiscoverPage.css";
 import Navbar from "./components/NavBar";
 import { Chip, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { listMeets } from '../backend/queries/meetQueries'
-import { useState, useEffect } from 'react'
+import { listMeets } from "../backend/queries/meetQueries";
+import { useState, useEffect } from "react";
 import { getImage } from "../backend/storage/s3";
+import { updateMeet } from "../backend/mutations/meetMutations";
+import { updateUser } from "../backend/mutations/userMutations";
 
 export default function DiscoverPage() {
-
   const [meetsAll, setMeetsAll] = useState<any[]>([]);
   console.log(meetsAll);
   // fetch all projects from backend
@@ -42,7 +43,7 @@ export default function DiscoverPage() {
         hour: "numeric",
         minute: "numeric",
       });
-    
+
       return `${month} ${day}, ${year}, ${time}`;
     }
     // fetch image and comments
@@ -52,13 +53,34 @@ export default function DiscoverPage() {
         const src = await getImage(props.Meeting.image_key);
         setImageSrc(src);
       };
-  
+
       fetchImage();
-    }, []);
+    }, [props.Meeting.image_key]);
+
+    const handleAttend = async () => {
+      if (localStorage.getItem("uuid") === props.Meeting.creator_id) {
+        return;
+      }
+
+      const result = await updateMeet({
+        input: {
+          id: props.Meeting.id,
+          attendants: [localStorage.getItem("uuid")!],
+        },
+      });
+      const result2 = await updateUser({
+        input: {
+          id: localStorage.getItem("uuid")!,
+          attending_meets: [props.Meeting.id],
+        },
+      });
+      navigate("/home");
+    };
+
     return (
-      <div className="DPDisplay" onClick={() => navigate("/discover/" + props.Meeting.meet_name, {state: props.Meeting})}>
+      <div className="DPDisplay">
         <div className="DiscoverImage">
-          <img className="DiscoverImages" src={imageSrc} alt = "Meeting" />
+          <img className="DiscoverImages" src={imageSrc} alt="Meeting" />
         </div>
         <div className="DiscoverMeeting">
           <div className="DiscoverTitle">
@@ -79,7 +101,7 @@ export default function DiscoverPage() {
                 fontSize: "calc(5px + 1vh);",
               }}
             >
-             {props.Meeting.description}
+              {props.Meeting.description}
             </Typography>
           </div>
           <div className="DiscoverTags">
@@ -102,25 +124,48 @@ export default function DiscoverPage() {
                 fontSize: "calc(3px + 1vh);",
               }}
             >
-              {formatIsoTimestamp(props.Meeting.start_time)} - {formatIsoTimestamp(props.Meeting.end_time)}
+              {formatIsoTimestamp(props.Meeting.start_time)} -{" "}
+              {formatIsoTimestamp(props.Meeting.end_time)}
             </Typography>
           </div>
-          <div className = "DiscoverButton">
-            <Button sx={{
-              backgroundColor: "#bf9b30",
-              width: "85%",
-              height: "3vh",
-              fontSize: "1rem",
-              color: "#FFFFFF",
-              mt: ".5rem",
-              "&:hover": {
-                backgroundColor: "#cea835",
-              },
-            }}>
-                Join Meeting
+          <div className="0-">
+            <Button
+              onClick={() => handleAttend()}
+              sx={{
+                backgroundColor: "#bf9b30",
+                width: "85%",
+                height: "3vh",
+                fontSize: "1rem",
+                color: "#FFFFFF",
+                mt: ".5rem",
+                "&:hover": {
+                  backgroundColor: "#cea835",
+                },
+              }}
+            >
+              Join Meeting
             </Button>
-            </div>
-
+            <Button
+              onClick={() =>
+                navigate("/discover/" + props.Meeting.meet_name, {
+                  state: props.Meeting,
+                })
+              }
+              sx={{
+                backgroundColor: "#bf9b30",
+                width: "85%",
+                height: "3vh",
+                fontSize: "1rem",
+                color: "#FFFFFF",
+                mt: ".5rem",
+                "&:hover": {
+                  backgroundColor: "#cea835",
+                },
+              }}
+            >
+              View Meeting
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -129,8 +174,8 @@ export default function DiscoverPage() {
     <main className="DiscoverContainer">
       <Navbar />
       <div className="Discover">
-        {meetsAll.map((meet) => ( 
-          <CreateData Meeting = {meet}/>
+        {meetsAll.map((meet) => (
+          <CreateData Meeting={meet} />
         ))}
       </div>
     </main>

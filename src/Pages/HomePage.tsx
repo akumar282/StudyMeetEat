@@ -51,10 +51,10 @@ export default function HomePage() {
   function StateButtons() {
     return (
       <div className="StateButtons">
-        <button className="StateButton" onClick={()=>setState(true)}>
+        <button className="StateButton" onClick={() => setState(true)}>
           Hosting
         </button>
-        <button className="StateButton" onClick={()=>setState(false)}>
+        <button className="StateButton" onClick={() => setState(false)}>
           Attending
         </button>
       </div>
@@ -76,10 +76,11 @@ export default function HomePage() {
 }
 
 function ShowMeetings(props: any) {
+  const navigate = useNavigate();
   if (props.state) {
     return (
       <div className="HomePageMain">
-        <div className="HPCreate">
+        <div className="HPCreate" onClick={() => navigate("/create")}>
           <AddCircleOutlineIcon fontSize="large" className="Creaticon" />{" "}
         </div>
         {props.meetsAll.map((meet) => (
