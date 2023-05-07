@@ -5,24 +5,12 @@ import { Chip, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { listMeets } from '../backend/queries/meetQueries'
 import { useState, useEffect } from 'react'
-
-const TestData = {
-    title: "Test Meeting",
-    description:
-      "Dn%VHZx#r8BXq3 &%34ZJ$Bm6QY4ZQPEewsG$ayZm 3+hpsZ2@!+dhd=burCq&KZw8GYnQs jS3cE6&yj&$u@4uyHZ2EaMz8hV9eD5d",
-    start_time: "2021-10-10T10:10:00",
-    end_time: "2021-10-10T10:50:00",
-    location: "22222 123st sw Bellevue, WA 98004",
-    classes: ["CSS350", "CSS360"],
-    attendants: ["Test Attendee", "Test Attendee2", "Test Attendee3"],
-    creator: "Test Creator",
-  };
-
+import { getImage } from "../backend/storage/s3";
 
 export default function DiscoverPage() {
 
   const [meetsAll, setMeetsAll] = useState<any[]>([]);
-
+  console.log(meetsAll);
   // fetch all projects from backend
   useEffect(() => {
     const fetchMeets = async () => {
@@ -41,13 +29,23 @@ export default function DiscoverPage() {
     };
     fetchMeets();
   }, []);
-
   const navigate = useNavigate();
+
   function CreateData(props: any) {
+    const [imageSrc, setImageSrc] = useState("");
+    // fetch image and comments
+    useEffect(() => {
+      const fetchImage = async () => {
+        const src = await getImage(props.Meeting.image_key);
+        setImageSrc(src);
+      };
+  
+      fetchImage();
+    }, []);
     return (
-      <div className="DPDisplay" onClick={() => navigate("/discover/title")}>
+      <div className="DPDisplay" onClick={() => navigate("/discover/" + props.Meeting.meet_name, {state: props.Meeting})}>
         <div className="DiscoverImage">
-          <img className="DiscoverImages" src="study.jpg" />
+          <img className="DiscoverImages" src={imageSrc} alt = "Meeting" />
         </div>
         <div className="DiscoverMeeting">
           <div className="DiscoverTitle">
@@ -58,7 +56,7 @@ export default function DiscoverPage() {
                 fontSize: "calc(15px + 1vh);",
               }}
             >
-              {TestData.title}
+              {props.Meeting.meet_name}
             </Typography>
           </div>
           <div className="DiscoverDescription">
@@ -68,11 +66,11 @@ export default function DiscoverPage() {
                 fontSize: "calc(5px + 1vh);",
               }}
             >
-             {TestData.description}
+             {props.Meeting.description}
             </Typography>
           </div>
           <div className="DiscoverTags">
-            {TestData.classes.map((tag) => (
+            {props.Meeting.classes.map((tag) => (
               <Chip
                 sx={{
                   backgroundColor: "#FFFFFF",
@@ -91,7 +89,7 @@ export default function DiscoverPage() {
                 fontSize: "calc(3px + 1vh);",
               }}
             >
-              {TestData.start_time} - {TestData.end_time}
+              {props.Meeting.start_time} - {props.Meeting.end_time}
             </Typography>
           </div>
           <div className = "DiscoverButton">
@@ -118,9 +116,9 @@ export default function DiscoverPage() {
     <main className="DiscoverContainer">
       <Navbar />
       <div className="Discover">
-        <CreateData />
-        <CreateData />
-        <CreateData />
+        {meetsAll.map((meet) => ( 
+          <CreateData Meeting = {meet}/>
+        ))}
       </div>
     </main>
   );

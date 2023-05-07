@@ -91,6 +91,7 @@
   align-items: center;
   justify-content: center;
   overflow: ellipsis;
+  height: auto;
   max-height: 30%;
   width: 100%;
   transition: 0.5s ease-in-out;

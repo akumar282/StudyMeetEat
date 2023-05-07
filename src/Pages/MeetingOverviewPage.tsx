@@ -1,23 +1,23 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState, useMemo } from "react";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./CSS/OverviewPage.css";
 import { Button, Chip, IconButton, Typography } from "@mui/material";
 import { updateMeet } from "../backend/mutations/postMutations";
 import { updateUser } from "../backend/mutations/userMutations";
-const TestData = {
-  title: "Test Meeting",
-  description:
-    "Dn%VHZx#r8BXq3 &%34ZJ$Bm6QY4ZQPEewsG$ayZm 3+hpsZ2@!+dhd=burCq&KZw8GYnQs jS3cE6&yj&$u@4uyHZ2EaMz8hV9eD5d",
-  start_time: "2021-10-10T10:10:00",
-  end_time: "2021-10-10T10:50:00",
-  location: "22222 123st sw Bellevue, WA 98004",
-  classes: ["CSS350", "CSS360"],
-  attendants: ["Test Attendee", "Test Attendee2", "Test Attendee3"],
-  creator: "Test Creator",
-};
+import { getImage } from "../backend/storage/s3";
+import { GoogleMap, Marker, MarkerF, useLoadScript } from "@react-google-maps/api";
+import { APIKEY } from "../APIKEY"
+
 
 export default function MeetingOverviewPage() {
+  const location = useLocation();
+  const meeting = location.state;
+  console.log(meeting);
 
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: APIKEY,
+  });
+  const [imageSrc, setImageSrc] = useState("");
   async function updateAttendees(props: any) {
     const result = await updateMeet({
       input: {
@@ -32,16 +32,58 @@ export default function MeetingOverviewPage() {
       }
     })
   }
+  const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
+  const google = window.google;
+  useEffect(() => {
+    const fetchImage = async () => {
+      const src = await getImage(meeting.image_key);
+      setImageSrc(src);
+    };
+
+    fetchImage();
+  }, []);
+  const navigate = useNavigate();
+
+
+  function Map() {
+    if (!isLoaded) return <></>;
+    return (
+      <GoogleMap
+        mapContainerClassName="map-container"
+        center={center}
+        zoom={10}
+      >
+        <MarkerF position={{ lat: 18.52043, lng: 73.856743 }} />
+      </GoogleMap>
+    );
+  }
   return (
     <main className="OverviewPage">
+      <div className="OverviewTopBar">
+        <Button variant="contained" 
+            onClick={() => { navigate("/discover") }}
+        sx={{
+              backgroundColor: "#bf9b30",
+              width: "85%",
+              color: "#FFFFFF",
+              fontSize: "1rem",
+              height: "3rem",
+              maxWidth: "15rem",
+              "&:hover": {
+                backgroundColor: "#cea835",
+              },
+            }}>
+          Back
+        </Button>
+      </div>
       <div className="OverviewContainer">
         <div className="OverviewTop">
           <div className="OverviewImageHolder">
-            <img className="DiscoverImages" src="BookIcon.png" />
+            <img className="DiscoverImages" src= {imageSrc}/>
           </div>
           <div className="OverviewInfo">
             <div className="OverviewTitle">
-              <Typography sx={{ fontSize: "calc(20px + 1vw)", fontWeight: "bold"}}>{TestData.title}</Typography>
+              <Typography sx={{ fontSize: "calc(20px + 1vw)", fontWeight: "bold"}}>{meeting.meet_name}</Typography>
             </div>
             <div className="OverviewDescription">
               <Typography
@@ -49,11 +91,11 @@ export default function MeetingOverviewPage() {
                 marginLeft={"2rem"}
                 marginRight={"2rem"}
               >
-                {TestData.description}
+                {meeting.description}
               </Typography>
             </div>
             <div className="OverviewClass">
-              {TestData.classes.map((item) => (
+              {meeting.classes.map((item) => (
                 <Chip
                   sx={{
                     backgroundColor: "#F5F5F5",
@@ -64,7 +106,17 @@ export default function MeetingOverviewPage() {
             </div>
             <div className="OverviewTime">
               <Typography variant="body1">
-                {TestData.start_time} - {TestData.end_time}
+                {meeting.start_time} - {meeting.end_time}
+              </Typography>
+            </div>
+            <div className = "OverviewAttendes">
+            <Typography variant="body1">
+                Attending: {meeting.attendants.length} 
+              </Typography>
+            </div>
+            <div className = "OverviewAttendes">
+            <Typography variant="body1">
+                Creator: {meeting.meet_creator} 
               </Typography>
             </div>
             <div className="OverviewButtons">
@@ -85,7 +137,7 @@ export default function MeetingOverviewPage() {
           </div>
         </div>
         <div className="OverviewBottom">
-            
+        <Map />
         </div>
       </div>
     </main>

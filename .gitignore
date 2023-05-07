@@ -8,7 +8,7 @@
 /.pnp
 .pnp.js
 src/ui-components
-
+APIKEY.ts
 # testing
 /coverage
 

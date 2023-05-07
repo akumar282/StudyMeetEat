@@ -94,7 +94,7 @@
   width: 100%;
   word-wrap: break-word;
   text-align: center;
-  height: 10rem;
+  max-height: 10rem;
   transition: 0.5s ease-in-out;
   overflow-y: ellipsis;
 }
@@ -131,5 +131,27 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  justify-self: bottom;
   transition: 0.5s ease-in-out;
+}
+.OverviewAttendes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.OverviewTopBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 5rem;
+  background-color: #5c4683;
+}
+.map-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
 }
