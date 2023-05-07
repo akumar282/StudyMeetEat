@@ -38,7 +38,7 @@ export default function LandingPage() {
       <div className="LPHeader">
         <div className="LPHeaderContainer">
           <div className="LPHeaderTDiv">
-            <h1 className="LPHeaderTitle">DubMeets</h1>
+            <img src = "Logo.png" alt="Landing Page" className="LPHImage" />
           </div>
           <div className="LPHeaderButtons">
             <Button
@@ -118,7 +118,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="LPBodyImage">
-            <img className="LPBII" src="Bookicon.png" alt="Landing Page" />
+            <img className="LPBII" src="BookIcon.png" alt="Landing Page" />
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #4d307f;
+  background-color: #5F3E87;
   width: 100%;
   height: 8%;
 }
@@ -122,4 +122,9 @@ body {
   max-width: 80rem;
   margin-top: 2rem;
   gap: 1rem;
+}
+.LPHImage {
+  width: 8%;
+  height: 8%;
+
 }
