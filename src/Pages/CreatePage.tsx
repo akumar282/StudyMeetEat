@@ -1,25 +1,24 @@
 import React from "react";
 import "./CSS/CreatePage.css";
 import Navbar from "./components/NavBar";
+import { ClassesEnum } from "../API";
 import { useFormik } from "formik";
 import {
+  Autocomplete,
   Button,
   IconButton,
-  InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
 import {
   DatePicker,
-  DateTimePicker,
-  DateTimeValidationError,
-  MobileTimePicker,
   TimePicker,
 } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import DownloadIcon from "@mui/icons-material/Download";
 
 export default function CreatePage() {
+  const [selectedClass, setSelectedClass] = React.useState([]);
   const [date, setDate] = React.useState<Dayjs | null>(dayjs());
   const [timeOne, setTimeOne] = React.useState<Dayjs | null>(dayjs());
   const [timeTwo, setTimeTwo] = React.useState<Dayjs | null>(dayjs());
@@ -30,7 +29,11 @@ export default function CreatePage() {
   const [selectedDate, handleDateChange] = React.useState<Dayjs | null>(
     dayjs()
   );
-
+  function handleClass(event: any, value: any | null) {
+    setSelectedClass(value.map((item: any) => item));
+    formik.setFieldValue("language", value);
+    console.log(value);
+  }
   function handleClick(event) {
     const fileInput = document.getElementById("file");
     fileInput?.click();
@@ -48,9 +51,8 @@ export default function CreatePage() {
     initialValues: {
       title: "",
       description: "",
-      class: [],
       location: "",
-      image: "",
+      class: [],
     },
     validate: (values) => {
       const errors: Record<string, string> = {};
@@ -67,9 +69,9 @@ export default function CreatePage() {
       if (!values.location) {
         errors.location = "Required";
       }
-      if (!values.image) {
-        errors.image = "Required";
-      }
+      if (!values.class) {
+        errors.class = "Required";
+    } 
       return errors;
     },
     onSubmit: (values) => {
@@ -143,79 +145,137 @@ export default function CreatePage() {
               </div>
             </div>
           </div>
-          
+
           <div className="CFMeetingInfo">
-              <div className="CFMeetingInfoTitle">
-                <h2>Meeting Name</h2>
+            <div className="CFMeetingInfoTitle">
+              <h2>Meeting Name</h2>
+              <TextField
+                id="title"
+                fullWidth
+                value={formik.values.title}
+                onChange={formik.handleChange}
+                error={formik.touched.title && Boolean(formik.errors.title)}
+                helperText={
+                  (formik.touched.title && formik.errors.title) || " "
+                }
+                variant="outlined"
+              />
+            </div>
+            <div className="CFMeetingInfoDate">
+              <Typography
+                sx={{
+                  color: "#111111",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                }}
+              >
+                Date
+              </Typography>
+
+              <DatePicker
+                value={date}
+                onChange={(newValue) => setDate(newValue)}
+              />
+            </div>
+            <div className="CFMeetingInfoTime">
+              <Typography
+                sx={{
+                  color: "#111111",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                }}
+              >
+                Time
+              </Typography>
+              <div className="CFMeetingInfoTimeInput">
+                <TimePicker
+                  value={timeOne}
+                  onChange={(newValue) => setTimeOne(newValue)}
+                />
+                <h4>to</h4>
+                <TimePicker
+                  value={timeTwo}
+                  onChange={(newValue) => setTimeTwo(newValue)}
+                />
+              </div>
+            </div>
+            <div className="CFMeetingInfoLocation">
+              <Typography
+                sx={{
+                  color: "#111111",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                }}
+              >
+                Location
+              </Typography>
                 <TextField
-                  id="title"
-                  fullWidth
-                  value={formik.values.title}
-                  onChange={formik.handleChange}
-                  error={formik.touched.title && Boolean(formik.errors.title)}
-                  helperText={
-                    (formik.touched.title && formik.errors.title) || " "
-                  }
-                  variant="outlined"
-                />
-              </div>
-              <div className="CFMeetingInfoDate">
-                <Typography 
-                    sx={{
-                        color: "#111111",
-                        fontWeight: "bold",
-                        fontSize: "1.5rem",
-                    }}
-                >
-                    Date
-                </Typography>
+                    id="location"
+                    fullWidth
+                    value={formik.values.location}
+                    onChange={formik.handleChange}
+                    error={
+                        formik.touched.location &&
+                        Boolean(formik.errors.location)
+                    }
+                    helperText={
 
-                <DatePicker
-                  value={date}
-                  onChange={(newValue) => setDate(newValue)}
+                        (formik.touched.location && formik.errors.location) ||
+                        " "
+                    }
+                    variant="outlined"
                 />
-                </div>
-                <div className="CFMeetingInfoTime">
-                <Typography 
-                    sx={{
-                        color: "#111111",
-                        fontWeight: "bold",
-                        fontSize: "1.5rem",
-                    }}
-                >
-                    Time
-                </Typography>
-                  <div className="CFMeetingInfoTimeInput">
-                    <TimePicker
-                      value={timeOne}
-                      onChange={(newValue) => setTimeOne(newValue)}
-                    />
-                    <h4>to</h4>
-                    <TimePicker
-                      value={timeTwo}
-                      onChange={(newValue) => setTimeTwo(newValue)}
-                    />
-                </div>
-              </div>
-                <div className="CFMeetingInfoLocation">
-                <Typography
-                    sx={{
-                        color: "#111111",
-                        fontWeight: "bold",
-                        fontSize: "1.5rem",
-                    }}
-                >
-                    Location
-                </Typography>
+            </div>
+            <div className="CFMeetingInfoClass">
+              <Typography
+                sx={{
+                  color: "#111111",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                }}
+              >
+                Classes
+              </Typography>
 
-                </div>
-              </div>
+              <Autocomplete
+                sx={{
+                  width: "90%",
+                }}
+                multiple
+                limitTags={2}
+                id="language"
+                options={Object.values(ClassesEnum)}
+                getOptionLabel={(option) => option}
+                defaultValue={[ClassesEnum[0]]}
+                filterSelectedOptions
+                value={selectedClass}
+                onChange={handleClass}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    value={formik.values.class}
+                    error={formik.touched.class && Boolean(formik.errors.class)}
+                    helperText={(formik.touched.class && formik.errors.class) || " " }
+                  />
+                )}
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <div className="CreateButton">
+      <div className="CFCreateButton">
         <Button
           variant="contained"
-          color="primary"
+          sx={{
+            backgroundColor: "#bf9b30",
+            width: "85%",
+            color: "#FFFFFF",
+            fontSize: "1rem",
+            height: "3rem",
+            "&:hover": {
+              backgroundColor: "#cea835",
+            },
+          }}
           onClick={() => formik.handleSubmit()}
         >
           Create

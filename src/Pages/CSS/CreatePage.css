@@ -133,3 +133,23 @@
 
   height: 100%;
 }
+.CFCreateButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+.CFMeetingInfoClass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.CFMeetingInfoLocation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
