@@ -3,6 +3,9 @@ import "./CSS/DiscoverPage.css";
 import Navbar from "./components/NavBar";
 import { Chip, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { listMeets } from '../backend/queries/meetQueries'
+import { useState, useEffect } from 'react'
+
 const TestData = {
     title: "Test Meeting",
     description:
@@ -14,7 +17,31 @@ const TestData = {
     attendants: ["Test Attendee", "Test Attendee2", "Test Attendee3"],
     creator: "Test Creator",
   };
+
+
 export default function DiscoverPage() {
+
+  const [meetsAll, setMeetsAll] = useState<any[]>([]);
+
+  // fetch all projects from backend
+  useEffect(() => {
+    const fetchMeets = async () => {
+      const result = await listMeets({
+        filter: {
+          creator_id: {
+            ne: localStorage.getItem("uuid")!,
+          },
+        },
+      });
+
+      const filteredProjects = result.data.listMeetsModels.items.filter(
+        (x) => x._deleted !== true
+      );
+      setMeetsAll(filteredProjects);
+    };
+    fetchMeets();
+  }, []);
+
   const navigate = useNavigate();
   function CreateData(props: any) {
     return (
