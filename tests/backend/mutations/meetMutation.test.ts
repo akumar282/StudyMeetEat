@@ -5,9 +5,7 @@ import { updateUser } from '../../../src/backend/mutations/userMutations'
 import { getMeetById } from '../../../src/backend/queries/meetQueries'
 import awsconfig from '../../../src/aws-exports'
 import { generateID, getRandomAWSDateTime, getRandomClasses } from '../utils' 
-import { async } from 'q'
 import { getUserById } from '../../../src/backend/queries/userQueries'
-import { ConsoleLogger } from '@aws-amplify/core'
 
 Amplify.configure(awsconfig)
 
