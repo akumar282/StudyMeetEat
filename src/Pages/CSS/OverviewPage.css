@@ -1,8 +1,135 @@
 .OverviewPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    outline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.OverviewContainer {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 80rem;
+  height: 75vh;
+  min-height: 30rem;
+  gap: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.OverviewTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+  gap: 1rem;
+  transition: 0.5s ease-in-out;
+}
+.OverviewImageHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  background-color: #ddc6f5;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  transition: 0.5s ease-in-out;
+}
+.DiscoverImages {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: 0.5s ease-in-out;
+}
+.OverviewInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  background-color: #ddc6f5;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  transition: 0.5s ease-in-out;
+}
+.OverviewBottom {
+  transition: 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+  background-color: #ddc6f5;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  transition: 0.5s ease-in-out;
+}
+.OverviewTitle {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+}
+.OverviewDescription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 100%;
+  word-wrap: break-word;
+  text-align: center;
+  height: 10rem;
+  transition: 0.5s ease-in-out;
+  overflow-y: ellipsis;
+}
+.OverviewClass {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  text-align: center;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+}
+.OverviewTime {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  text-align: center;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+}
+.OverviewButtons {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
 }

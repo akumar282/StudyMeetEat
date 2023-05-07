@@ -2,7 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #dad7cd;
+  background-color: #f8f9fa;
 }
 
 .LandingPageContainer {
@@ -104,6 +104,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
+  max-height: 10rem;
 }
 .LPAboutText {
   width: 95%;
@@ -111,4 +112,14 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-top: 2rem;
+}
+.LPAboutContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 80rem;
+  margin-top: 2rem;
+  gap: 1rem;
 }
