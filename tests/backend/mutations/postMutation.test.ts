@@ -9,7 +9,7 @@ Amplify.configure(awsconfig)
 describe('Post Mutations', () => {
 
   test.skip('Create Post', async () => {
-
+    
     const earliestBound: Date = new Date('2023-01-01')
     const latestBound: Date = new Date('2023-12-31')
     const testPosterUUID = `383221a9-c50d-48a7-be7b-6103407f2bfe` // user already created
