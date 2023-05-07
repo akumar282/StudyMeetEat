@@ -1,0 +1,33 @@
+.MFAPopup {
+    height: 60vh;
+    max-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.MFAPopupContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.MFAPopupTitle {
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+.MFAPopupContent {
+    width: 100%;
+    height: 60%;
+}
+.MFAText {
+    width: 90%;
+}
+.MFAPopupButton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}

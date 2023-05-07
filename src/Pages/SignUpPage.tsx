@@ -6,10 +6,16 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from "react-router-dom";
 import { Button, IconButton, InputAdornment } from "@mui/material";
+import MFAPopup from "./MFAPopup";
 
 export default function SignUpPage() {
     const [showPassword, setShowPassword] = React.useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+    const [isAuthOpen, setAuthOpen] = React.useState(false);
+    function OpenAuth() {
+      setAuthOpen(true);
+    }
+
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -66,6 +72,10 @@ export default function SignUpPage() {
   });
   return (
     <main className="SignUpContainer">
+      <MFAPopup 
+        trigger={isAuthOpen}
+        setTrigger={setAuthOpen}
+      />
       <div className="SignUpForm">
         <div className="SUTitle">
           <Typography

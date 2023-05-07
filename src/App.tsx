@@ -6,6 +6,8 @@ import SignUpPage from "./Pages/SignUpPage";
 import HomePage from "./Pages/HomePage";
 import CreatePage from "./Pages/CreatePage";
 import DiscoverPage from "./Pages/DiscoverPage";
+import MeetingOverviewPage from "./Pages/MeetingOverviewPage";
+import MFAPopup from "./Pages/MFAPopup";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import "./App.css";
@@ -21,6 +23,8 @@ function App() {
         <Route path="/home" element={<HomePage />} />  
         <Route path="/create" element={<CreatePage />} />
         <Route path="/discover" element={<DiscoverPage />} />
+        <Route path="/discover/*" element={<MeetingOverviewPage/>} />
+        <Route path="/authcode" element={<MFAPopup />} />
       </Routes>
     </BrowserRouter>
     </LocalizationProvider>

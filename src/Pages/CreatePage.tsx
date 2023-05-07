@@ -10,10 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import {
-  DatePicker,
-  TimePicker,
-} from "@mui/x-date-pickers";
+import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import DownloadIcon from "@mui/icons-material/Download";
 
@@ -71,15 +68,13 @@ export default function CreatePage() {
       }
       if (!values.class) {
         errors.class = "Required";
-    } 
+      }
       return errors;
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-
-  console.log(selectedDate?.toISOString());
   return (
     <main className="CreateContainer">
       <Navbar />
@@ -209,22 +204,19 @@ export default function CreatePage() {
               >
                 Location
               </Typography>
-                <TextField
-                    id="location"
-                    fullWidth
-                    value={formik.values.location}
-                    onChange={formik.handleChange}
-                    error={
-                        formik.touched.location &&
-                        Boolean(formik.errors.location)
-                    }
-                    helperText={
-
-                        (formik.touched.location && formik.errors.location) ||
-                        " "
-                    }
-                    variant="outlined"
-                />
+              <TextField
+                id="location"
+                fullWidth
+                value={formik.values.location}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.location && Boolean(formik.errors.location)
+                }
+                helperText={
+                  (formik.touched.location && formik.errors.location) || " "
+                }
+                variant="outlined"
+              />
             </div>
             <div className="CFMeetingInfoClass">
               <Typography
@@ -255,7 +247,9 @@ export default function CreatePage() {
                     {...params}
                     value={formik.values.class}
                     error={formik.touched.class && Boolean(formik.errors.class)}
-                    helperText={(formik.touched.class && formik.errors.class) || " " }
+                    helperText={
+                      (formik.touched.class && formik.errors.class) || " "
+                    }
                   />
                 )}
               />
