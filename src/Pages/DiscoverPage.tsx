@@ -2,13 +2,13 @@ import React from "react";
 import "./CSS/DiscoverPage.css";
 import Navbar from "./components/NavBar";
 import { Chip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function DiscoverPage() {
-    return (
-        <main className="DiscoverContainer">
-            <Navbar />
-            <div className="Discover">
-                <div className="DPDisplay">
+    const navigate = useNavigate();
+    function CreateData (props: any) {
+        return (
+            <div className="DPDisplay" onClick = {() => navigate("/discover/title")} >
                     <img className="DiscoverImage" src = "study.jpg"/>
                     <h className="DiscoverTitle">Study</h>
                     <p className="DiscoverDesc">Study with other students</p>
@@ -23,6 +23,13 @@ export default function DiscoverPage() {
                     }}
                         label="class" />
                 </div>
+        )
+    }
+    return (
+        <main className="DiscoverContainer">
+            <Navbar />
+            <div className="Discover">
+                <CreateData />
             </div>
         </main>
     );
