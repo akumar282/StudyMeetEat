@@ -1,0 +1,135 @@
+.CreateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.CreateContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin: 1rem;
+  min-height: 30rem;
+}
+.CreateForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  min-width: 45rem;
+  max-width: 70rem;
+  height: 60vh;
+  max-height: 50rem;
+  min-height: 40rem;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.CreateFormLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  gap: 1rem;
+}
+.CreateFormRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  gap: 1rem;
+  background-color: #d3c2f3;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+.CFInputImgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 55%;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background-color: #d3c2f3;
+}
+.CFMeetingInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 55%;
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background-color: #d3c2f3;
+}
+.CFMeetingInfoTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+.CFDescription {
+  width: 100%;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background-color: #d3c2f3;
+}
+.CFDescriptionInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+.CFInputImgContainer {
+  position: relative;
+}
+.imagePrev {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: fill;
+  border-radius: 1rem;
+}
+.CFMeetingInfoDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: -1rem;
+}
+.CFMeetingInfoTime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.CFMeetingInfoTimeInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  margin: auto;
+  gap: 1rem;
+}
+.CFBTags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+
+  height: 100%;
+}

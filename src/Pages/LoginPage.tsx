@@ -82,7 +82,6 @@ export default function LoginPage() {
             value={formik.values.email}
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
-            onBlur={formik.handleBlur}
             helperText={(formik.touched.email && formik.errors.email) || " "}
           />
           <Typography
@@ -111,7 +110,6 @@ export default function LoginPage() {
                 </InputAdornment>
               ),
             }}
-            onBlur={formik.handleBlur}
             value={formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
@@ -133,8 +131,7 @@ export default function LoginPage() {
                 backgroundColor: "#cea835",
               },
             }}
-            onClick={() => formik.handleSubmit()}
-          >
+            onClick={() => formik.handleSubmit()}>
             Login
           </Button>
         </div>

@@ -6,12 +6,13 @@ import SignUpPage from "./Pages/SignUpPage";
 import HomePage from "./Pages/HomePage";
 import CreatePage from "./Pages/CreatePage";
 import DiscoverPage from "./Pages/DiscoverPage";
-
-
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import "./App.css";
 
 function App() {
   return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -22,6 +23,7 @@ function App() {
         <Route path="/discover" element={<DiscoverPage />} />
       </Routes>
     </BrowserRouter>
+    </LocalizationProvider>
   );
 }
 
