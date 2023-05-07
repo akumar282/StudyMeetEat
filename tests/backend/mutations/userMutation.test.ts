@@ -1,6 +1,6 @@
 import { Amplify } from 'aws-amplify'
 import { CreateUsersModelInput } from '../../../src/API'
-import { createUser, deleteUser, updateUser } from '../../../src/backend/mutations/userMutations'
+import { createUser } from '../../../src/backend/mutations/userMutations'
 import awsconfig from '../../../src/aws-exports'
 import { generateID, generateUUID } from '../../backend/utils'
 
