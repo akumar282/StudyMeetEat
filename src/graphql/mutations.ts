@@ -17,6 +17,8 @@ export const createMeetsModel = /* GraphQL */ `
       end_time
       classes
       attendants
+      image_key
+      description
       createdAt
       updatedAt
       _version
@@ -40,6 +42,8 @@ export const updateMeetsModel = /* GraphQL */ `
       end_time
       classes
       attendants
+      image_key
+      description
       createdAt
       updatedAt
       _version
@@ -63,6 +67,8 @@ export const deleteMeetsModel = /* GraphQL */ `
       end_time
       classes
       attendants
+      image_key
+      description
       createdAt
       updatedAt
       _version
@@ -87,6 +93,7 @@ export const createUsersModel = /* GraphQL */ `
       classes
       created_meets
       attending_meets
+      image_key
       createdAt
       updatedAt
       _version
@@ -111,6 +118,7 @@ export const updateUsersModel = /* GraphQL */ `
       classes
       created_meets
       attending_meets
+      image_key
       createdAt
       updatedAt
       _version
@@ -135,6 +143,7 @@ export const deleteUsersModel = /* GraphQL */ `
       classes
       created_meets
       attending_meets
+      image_key
       createdAt
       updatedAt
       _version

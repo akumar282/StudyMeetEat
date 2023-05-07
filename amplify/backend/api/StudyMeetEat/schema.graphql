@@ -19,6 +19,8 @@ type MeetsModel @model @searchable @auth(rules: [{allow: public, operations: [re
   end_time: AWSDateTime!
   classes: [ClassesEnum]
   attendants: [ID]
+  image_key: String
+  description: String
 }
 
 type UsersModel @model @searchable @auth(rules: [{allow: public, operations: [read, create, delete, update]}]) {
@@ -32,5 +34,6 @@ type UsersModel @model @searchable @auth(rules: [{allow: public, operations: [re
   classes: [ClassesEnum]
   created_meets: [ID]
   attending_meets: [ID]
+  image_key: String
 }
  

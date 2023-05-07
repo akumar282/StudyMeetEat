@@ -14,6 +14,8 @@ export const getMeetsModel = /* GraphQL */ `
       end_time
       classes
       attendants
+      image_key
+      description
       createdAt
       updatedAt
       _version
@@ -39,6 +41,8 @@ export const listMeetsModels = /* GraphQL */ `
         end_time
         classes
         attendants
+        image_key
+        description
         createdAt
         updatedAt
         _version
@@ -73,6 +77,8 @@ export const syncMeetsModels = /* GraphQL */ `
         end_time
         classes
         attendants
+        image_key
+        description
         createdAt
         updatedAt
         _version
@@ -111,6 +117,8 @@ export const searchMeetsModels = /* GraphQL */ `
         end_time
         classes
         attendants
+        image_key
+        description
         createdAt
         updatedAt
         _version
@@ -149,6 +157,7 @@ export const getUsersModel = /* GraphQL */ `
       classes
       created_meets
       attending_meets
+      image_key
       createdAt
       updatedAt
       _version
@@ -175,6 +184,7 @@ export const listUsersModels = /* GraphQL */ `
         classes
         created_meets
         attending_meets
+        image_key
         createdAt
         updatedAt
         _version
@@ -210,6 +220,7 @@ export const syncUsersModels = /* GraphQL */ `
         classes
         created_meets
         attending_meets
+        image_key
         createdAt
         updatedAt
         _version
@@ -249,6 +260,7 @@ export const searchUsersModels = /* GraphQL */ `
         classes
         created_meets
         attending_meets
+        image_key
         createdAt
         updatedAt
         _version

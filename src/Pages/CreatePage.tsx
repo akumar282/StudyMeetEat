@@ -13,6 +13,9 @@ import {
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import DownloadIcon from "@mui/icons-material/Download";
+import { uploadImage } from '../backend/storage/s3'
+import { createMeet } from '../backend/mutations/postMutations'
+import { v4 as uuidv4 } from 'uuid';
 
 export default function CreatePage() {
   const [selectedClass, setSelectedClass] = React.useState([]);
@@ -26,6 +29,34 @@ export default function CreatePage() {
   const [selectedDate, handleDateChange] = React.useState<Dayjs | null>(
     dayjs()
   );
+
+  async function createMeetDyn(props: {
+    title: string,
+    description: string,
+    location: string,
+    class: ClassesEnum[],
+    startTime: string,
+    endTime: string,
+  }): Promise<void> {
+    const uuidGen = uuidv4();
+    const imageLink = await uploadImage(selectedFile!)
+    const result = await createMeet({
+      input: {
+        id: uuidGen,
+        creator_id: localStorage.getItem('uuid')!,
+        meet_creator: localStorage.getItem('username')!,
+        image_key: imageLink,
+        meet_name: props.title,
+        description: props.description,
+        location: props.location,
+        classes: props.class,
+        start_time: props.startTime,
+        end_time: props.endTime,
+      }
+    })
+    console.log(result)
+  }
+
   function handleClass(event: any, value: any | null) {
     setSelectedClass(value.map((item: any) => item));
     formik.setFieldValue("language", value);
@@ -72,7 +103,7 @@ export default function CreatePage() {
       return errors;
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      createMeetDyn(values)
     },
   });
   return (
