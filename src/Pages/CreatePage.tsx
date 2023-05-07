@@ -19,7 +19,6 @@ import { v4 as uuidv4 } from 'uuid';
 import awsconfig from '../aws-exports'
 import { Amplify } from 'aws-amplify'
 Amplify.configure(awsconfig)
-import { time } from "console";
 
 export default function CreatePage() {
   const [selectedClass, setSelectedClass] = React.useState([]);
