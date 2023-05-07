@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-
+import { Auth } from "aws-amplify"
 import "./CSS/MFAPopup.css";
 
 export default function MFAPopup(props) {
@@ -32,9 +32,10 @@ export default function MFAPopup(props) {
         .max(6, "Must be 6 characters or less")
         .required("Required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
       props.setTrigger(false);
+      await Auth.confirmSignUp(localStorage.getItem('email')!, values.code)
       navigate("/home");
     },
   });

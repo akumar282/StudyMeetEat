@@ -112,6 +112,7 @@ export default function SignUpPage() {
     },
     onSubmit: (values) => {
       sendToDatabase(values);
+      OpenAuth();
     },
   });
   return (

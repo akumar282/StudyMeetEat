@@ -10,6 +10,9 @@ import {
 import { useFormik } from "formik";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Auth } from "aws-amplify";
+import { getCurrentUserAttributes } from '../backend/auth/authentication'
+import { getUserById } from '../backend/queries/userQueries'
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -46,8 +49,20 @@ export default function LoginPage() {
       }
       return errors;
     },
-    onSubmit: (values) => {
-      // add login functionality here
+    onSubmit: async (values) => {
+      if (await Auth.signIn(values.email, values.password)) {
+        localStorage.setItem('uuid', (await getCurrentUserAttributes()).at(0)!.value)
+        localStorage.setItem('email', values.email)
+        localStorage.setItem('isLoggedin', 'true')
+        console.log(localStorage.getItem('uuid'))
+        const username = await getUserById(localStorage.getItem('uuid')!)
+        localStorage.setItem('username', username.data.getUsersModel.user_name)
+        localStorage.setItem('profileImage', username.data.getUsersModel.image_key)
+        localStorage.setItem('userVersion', username.data.getUsersModel._version)
+        console.log(username)
+      } else {
+        alert("Incorrect username or password")
+      }
       navigate("/home");
     },
   });
