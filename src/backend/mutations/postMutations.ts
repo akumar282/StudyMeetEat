@@ -1,5 +1,9 @@
 import { API } from 'aws-amplify'
-import { createMeetsModel, deleteMeetsModel, updateMeetsModel } from '../../graphql/mutations'
+import { 
+  createMeetsModel, 
+  deleteMeetsModel, 
+  updateMeetsModel 
+} from '../../graphql/mutations'
 import {
   CreateMeetsModelInput,
   UpdateMeetsModelInput,
