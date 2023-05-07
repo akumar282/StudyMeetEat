@@ -8,25 +8,25 @@ import CreatePage from "./Pages/CreatePage";
 import DiscoverPage from "./Pages/DiscoverPage";
 import MeetingOverviewPage from "./Pages/MeetingOverviewPage";
 import MFAPopup from "./Pages/MFAPopup";
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "./App.css";
 
 function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/home" element={<HomePage />} />  
-        <Route path="/create" element={<CreatePage />} />
-        <Route path="/discover" element={<DiscoverPage />} />
-        <Route path="/discover/*" element={<MeetingOverviewPage/>} />
-        <Route path="/authcode" element={<MFAPopup />} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/create" element={<CreatePage />} />
+          <Route path="/discover" element={<DiscoverPage />} />
+          <Route path="/discover/*" element={<MeetingOverviewPage />} />
+          <Route path="/authcode" element={<MFAPopup />} />
+        </Routes>
+      </BrowserRouter>
     </LocalizationProvider>
   );
 }

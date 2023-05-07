@@ -147,6 +147,7 @@ export default function SignUpPage() {
                 name="firstName"
                 variant="outlined"
                 fullWidth
+                sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
                 value={formik.values.firstName}
                 onChange={formik.handleChange}
                 error={
@@ -172,6 +173,7 @@ export default function SignUpPage() {
                 name="lastName"
                 variant="outlined"
                 fullWidth
+                sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
                 value={formik.values.lastName}
                 onChange={formik.handleChange}
                 error={
@@ -199,6 +201,7 @@ export default function SignUpPage() {
                 name="username"
                 variant="outlined"
                 fullWidth
+                sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 error={
@@ -223,6 +226,7 @@ export default function SignUpPage() {
                 id="email"
                 name="email"
                 variant="outlined"
+                sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
                 fullWidth
                 value={formik.values.email}
                 onChange={formik.handleChange}
@@ -251,6 +255,7 @@ export default function SignUpPage() {
                 variant="outlined"
                 type={showPassword ? "text" : "password"}
                 fullWidth
+                sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -260,7 +265,7 @@ export default function SignUpPage() {
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        {showPassword ? <VisibilityOff sx = {{ color: "#FFFFFF"}}/> : <Visibility sx = {{ color: "#FFFFFF"}}/>}
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -291,6 +296,7 @@ export default function SignUpPage() {
                 variant="outlined"
                 type={showConfirmPassword ? "text" : "password"}
                 fullWidth
+                sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -300,7 +306,7 @@ export default function SignUpPage() {
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        {showPassword ? <VisibilityOff sx = {{ color: "#FFFFFF"}}/> : <Visibility sx = {{ color: "#FFFFFF"}}/>}
                       </IconButton>
                     </InputAdornment>
                   ),

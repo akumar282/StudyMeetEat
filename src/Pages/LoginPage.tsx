@@ -15,6 +15,9 @@ import { getCurrentUserAttributes } from '../backend/auth/authentication'
 import { getUserById } from '../backend/queries/userQueries'
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
+import awsconfig from '../aws-exports'
+import { Amplify } from 'aws-amplify'
+Amplify.configure(awsconfig)
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -53,7 +56,6 @@ export default function LoginPage() {
       if (await Auth.signIn(values.email, values.password)) {
         localStorage.setItem('uuid', (await getCurrentUserAttributes()).at(0)!.value)
         localStorage.setItem('email', values.email)
-        localStorage.setItem('isLoggedin', 'true')
         console.log(localStorage.getItem('uuid'))
         const username = await getUserById(localStorage.getItem('uuid')!)
         localStorage.setItem('username', username.data.getUsersModel.user_name)
@@ -73,7 +75,7 @@ export default function LoginPage() {
         <div className="LoginTitle">
           <Typography
             sx={{
-              color: "#dad7cd",
+              color: "#FFFFFF",
               fontWeight: "Bold",
               fontSize: "calc(25px + 3vh);",
             }}
@@ -84,7 +86,7 @@ export default function LoginPage() {
         <div className="LoginInput">
           <Typography
             variant="h6"
-            sx={{ color: "#dad7cd", fontWeight: "Bold" }}
+            sx={{ color: "#FFFFFF", fontWeight: "Bold" }}
           >
             Email
           </Typography>
@@ -93,6 +95,7 @@ export default function LoginPage() {
             id="email"
             name="email"
             variant="outlined"
+            sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
             fullWidth
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -101,7 +104,7 @@ export default function LoginPage() {
           />
           <Typography
             variant="h6"
-            sx={{ color: "#dad7cd", fontWeight: "Bold" }}
+            sx={{ color: "#FFFFFF", fontWeight: "Bold" }}
           >
             Password
           </Typography>
@@ -111,6 +114,7 @@ export default function LoginPage() {
             variant="outlined"
             type={showPassword ? "text" : "password"}
             fullWidth
+            sx = {{ input: { color: "#FFFFFF"}, "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": { borderColor: "#FFFFFF", }}}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -120,7 +124,7 @@ export default function LoginPage() {
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? <VisibilityOff sx = {{ color: "#FFFFFF"}}/> : <Visibility sx = {{ color: "#FFFFFF"}}/>}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -153,7 +157,7 @@ export default function LoginPage() {
         <div className="LoginFooter">
           <Typography
             variant="h6"
-            sx={{ color: "#dad7cd", fontWeight: "Bold" }}
+            sx={{ color: "#FFFFFF", fontWeight: "Bold" }}
           >
             Don't have an account?
           </Typography>

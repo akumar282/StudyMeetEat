@@ -3,7 +3,36 @@ import "./CSS/LandingPage.css";
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+const globalAuthState = {
+  isAuthenticated: false,
+  username: null,
+  email: null,
+  uuid: null,
+  userVersion: null,
+  profileImage: null,
+}
 export default function LandingPage() {
+  function setLocalStorage() {
+    if (!localStorage.getItem("email")) {
+      window.localStorage.setItem("email", globalAuthState.email);
+    }
+    if (!localStorage.getItem("isAuthenticated")) {
+      window.localStorage.setItem("isLoggedin", globalAuthState.isLoggedin);
+    }
+    if (!localStorage.getItem("uuid")) {
+      window.localStorage.setItem("uuid", globalAuthState.uuid);
+    }
+    if (!localStorage.getItem("username")) {
+      window.localStorage.setItem("username", globalAuthState.username);
+    }
+    if (!localStorage.getItem("userVersion")) {
+      window.localStorage.setItem("userVersion", globalAuthState.userVersion);
+    }
+    if (!localStorage.getItem("profileImage")) {
+      window.localStorage.setItem("profileImage", globalAuthState.profileImage);
+    }
+  }
+  setLocalStorage();
   return (
     <main className="LandingPageContainer">
       <div className="LPHeader">
@@ -13,8 +42,8 @@ export default function LandingPage() {
           </div>
           <div className="LPHeaderButtons">
             <Button
-            component={Link}
-            to="/signup"
+              component={Link}
+              to="/signup"
               disableRipple
               sx={{
                 color: "#FFFFFF",
@@ -69,6 +98,8 @@ export default function LandingPage() {
             <div className="LPBB">
               <Button
                 disableRipple
+                component={Link}
+                to="/signup"
                 variant="contained"
                 sx={{
                   backgroundColor: "#bf9b30",
@@ -90,8 +121,10 @@ export default function LandingPage() {
             <img className="LPBII" src="Bookicon.png" alt="Landing Page" />
           </div>
         </div>
-        <img className="LPBII2" src="AbhiWave.png" alt="Landing Page" />
-        <div className="LPAbout">
+      </div>
+      <img className="LPBII2" src="AbhiWave.png" alt="Landing Page" />
+      <div className="LPAbout">
+        <div className="LPAboutContainer">
           <div className="LPAboutText">
             <Typography
               variant="h2"
@@ -100,7 +133,8 @@ export default function LandingPage() {
                 fontWeight: "bold",
                 fontSize: "calc(25px + 3vh);",
                 mb: "1rem",
-              }}>
+              }}
+            >
               About DubMeets:
             </Typography>
             <Typography
@@ -108,12 +142,13 @@ export default function LandingPage() {
               sx={{
                 color: "#FFFFFF",
                 fontSize: "calc(15px + 1.5vh);",
-              }}>
+              }}
+            >
               DubMeets is a platform for students to connect and learn with each
               other. Students can create study meetups for any subject or class
               and join other students' meetups.
             </Typography>
-            </div>
+          </div>
         </div>
       </div>
     </main>

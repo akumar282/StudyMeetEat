@@ -10,12 +10,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DatePicker, TimePicker } from "@mui/x-date-pickers";
+import { DatePicker, TimePicker, MobileTimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import DownloadIcon from "@mui/icons-material/Download";
 import { uploadImage } from '../backend/storage/s3'
 import { createMeet } from '../backend/mutations/postMutations'
 import { v4 as uuidv4 } from 'uuid';
+import awsconfig from '../aws-exports'
+import { Amplify } from 'aws-amplify'
+Amplify.configure(awsconfig)
 
 export default function CreatePage() {
   const [selectedClass, setSelectedClass] = React.useState([]);
@@ -35,11 +38,12 @@ export default function CreatePage() {
     description: string,
     location: string,
     class: ClassesEnum[],
-    startTime: string,
-    endTime: string,
   }): Promise<void> {
     const uuidGen = uuidv4();
     const imageLink = await uploadImage(selectedFile!)
+    const start = date?.format("YYYY-MM-DD") + 'T' + timeOne?.format("HH:mm:ss.sss") + 'Z'
+    const end = date?.format("YYYY-MM-DD") + 'T' + timeTwo?.format("HH:mm:ss.sss") + 'Z'
+    console.log(start)
     const result = await createMeet({
       input: {
         id: uuidGen,
@@ -50,10 +54,11 @@ export default function CreatePage() {
         description: props.description,
         location: props.location,
         classes: props.class,
-        start_time: props.startTime,
-        end_time: props.endTime,
+        start_time: start,
+        end_time: end
       }
     })
+    
     console.log(result)
   }
 
@@ -106,6 +111,7 @@ export default function CreatePage() {
       createMeetDyn(values)
     },
   });
+
   return (
     <main className="CreateContainer">
       <Navbar />
@@ -199,27 +205,40 @@ export default function CreatePage() {
               </Typography>
 
               <DatePicker
+                disablePast
                 value={date}
                 onChange={(newValue) => setDate(newValue)}
               />
             </div>
             <div className="CFMeetingInfoTime">
-              <Typography
+              
+              <div className="CFMeetingInfoTimeInput">
+                <Typography
                 sx={{
                   color: "#111111",
                   fontWeight: "bold",
                   fontSize: "1.5rem",
                 }}
               >
-                Time
+                From
               </Typography>
-              <div className="CFMeetingInfoTimeInput">
-                <TimePicker
+                <MobileTimePicker
+                disablePast
                   value={timeOne}
                   onChange={(newValue) => setTimeOne(newValue)}
                 />
-                <h4>to</h4>
-                <TimePicker
+                </div>
+                <div className="CFMeetingInfoTimeInput">
+                <Typography
+                sx={{
+                  color: "#111111",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                }}
+              >
+                To
+              </Typography>
+                <MobileTimePicker
                   value={timeTwo}
                   onChange={(newValue) => setTimeTwo(newValue)}
                 />
