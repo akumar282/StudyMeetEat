@@ -58,7 +58,7 @@ export default function LoginPage() {
         localStorage.setItem('email', values.email)
         console.log(localStorage.getItem('uuid'))
         const username = await getUserById(localStorage.getItem('uuid')!)
-        localStorage.setItem('username', username.data.getUsersModel.user_name)
+        localStorage.setItem('username', username.data.getUsersModel.username)
         localStorage.setItem('profileImage', username.data.getUsersModel.image_key)
         localStorage.setItem('userVersion', username.data.getUsersModel._version)
         console.log(username)
