@@ -100,7 +100,7 @@ export default function SignUpPage() {
       return errors;
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      sendToDatabase(values)
     },
   });
   return (
