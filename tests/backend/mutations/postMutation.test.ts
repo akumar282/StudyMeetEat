@@ -1,6 +1,6 @@
 import { Amplify } from 'aws-amplify'
 import { CreateMeetsModelInput } from '../../../src/API'
-import { createMeet, deleteMeet, updateMeet } from '../../../src/backend/mutations/postMutations'
+import { createMeet } from '../../../src/backend/mutations/postMutations'
 import awsconfig from '../../../src/aws-exports'
 import { generateID, getRandomAWSDateTime, getRandomClasses } from '../../backend/utils' 
 
