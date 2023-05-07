@@ -18,6 +18,7 @@ import { createMeet } from '../backend/mutations/postMutations'
 import { v4 as uuidv4 } from 'uuid';
 import awsconfig from '../aws-exports'
 import { Amplify } from 'aws-amplify'
+import { updateUser } from "../backend/mutations/userMutations";
 Amplify.configure(awsconfig)
 
 export default function CreatePage() {
@@ -41,8 +42,8 @@ export default function CreatePage() {
   }): Promise<void> {
     const uuidGen = uuidv4();
     const imageLink = await uploadImage(selectedFile!)
-    const start = date?.format("YYYY-MM-DD") + 'T' + timeOne?.format("HH:mm:ss.sss") + 'Z'
-    const end = date?.format("YYYY-MM-DD") + 'T' + timeTwo?.format("HH:mm:ss.sss") + 'Z'
+    const start = date?.format('YYYY-MM-DD') + 'T' + timeOne?.format('HH:mm:ss.sss') + 'Z'
+    const end = date?.format('YYYY-MM-DD') + 'T' + timeTwo?.format('HH:mm:ss.sss') + 'Z'
     console.log(start)
     const result = await createMeet({
       input: {
@@ -60,11 +61,12 @@ export default function CreatePage() {
     })
     const result2 = await updateUser({
       input: {
-        id: localStorage.getItem("uuid")!,
+        id: localStorage.getItem('uuid')!,
         attending_meets: [result.data.createPostsModels.id]
       }
     })
     console.log(result)
+    console.log(result2)
   }
 
   function handleClass(event: any, value: any | null) {
