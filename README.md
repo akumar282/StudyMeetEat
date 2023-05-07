@@ -8,15 +8,15 @@ DubMeets is a web platform that allows students to create and join study session
 
 ## How we built it
 
-We built DubMeets in two parts the frontend and the backend. The Frontend used Typescript and React to help build a responsive UI. The backend used Typescript, Node, AWS, Amplify, and Google maps API to help build an effective data storage platform. Putting both together we were able to create a responsive and scalable platform.
+We built DubMeets in two parts the frontend and the backend. The Frontend used Typescript and React to help build a responsive UI. The backend used Typescript, Node, AWS, Amplify, and Google Maps API to help build an effective data storage platform. Putting both together we were able to create a responsive and scalable platform.
 
 ## Challenges we ran into
 
-We faced a few challenges during the development of DubMeets, such as integrating Google maps location features, working with AWS and S3 to get our backend working perfectly, and working with the time constraint to finish a project. However, we overcame these challenges by working collaboratively and leveraging our resources.
+We faced a few challenges during the development of DubMeets, such as integrating Google Maps location features, working with AWS and S3 to get our backend working perfectly, and working with the time constraint to finish a project. However, we overcame these challenges by working collaboratively and leveraging our resources.
 
 ## Accomplishments that we're proud of
 
-We are proud of being able to create a working full-stack application within the limits of the hackathon using AWS and the Google maps API to display locations and setup meeting locations. We are proud of getting S3 buckets working to be able to store images for meetings.
+We are proud of being able to create a working full-stack application within the limits of the hackathon using AWS and the Google Maps API to display locations and set up meeting locations. We are proud of getting S3 buckets working to be able to store images for meetings.
 
 ## What we learned
 
@@ -27,4 +27,4 @@ Through the development of DubMeets, we learned the importance of collaboration,
 Our next steps for DubMeets include expanding the platform to more campuses and universities, integrating more features based on user feedback, and partnering with academic institutions to provide additional support and resources for students. We're excited to continue improving and growing DubMeets to help students achieve academic success.
 
 ## Link To Working Site
-https://maps.googleapis.com/maps/api/geocode/json?address=UWB%20ARC&key=AIzaSyBt9SLqQ59hPfq_1xVkR99QZaIsfHS1kh4
+[link](https://maps.googleapis.com/maps/api/geocode/json?address=UWB%20ARC&key=AIzaSyBt9SLqQ59hPfq_1xVkR99QZaIsfHS1kh4)
