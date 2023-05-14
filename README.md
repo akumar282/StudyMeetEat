@@ -27,4 +27,4 @@ Through the development of DubMeets, we learned the importance of collaboration,
 Our next steps for DubMeets include expanding the platform to more campuses and universities, integrating more features based on user feedback, and partnering with academic institutions to provide additional support and resources for students. We're excited to continue improving and growing DubMeets to help students achieve academic success.
 
 ## Link To Working Site
-[Live Demo](https://maps.googleapis.com/maps/api/geocode/json?address=UWB%20ARC&key=AIzaSyBt9SLqQ59hPfq_1xVkR99QZaIsfHS1kh4)
+[Live Demo](https://staging.d2bpt9y90s59cb.amplifyapp.com/)
